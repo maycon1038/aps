@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">aps</string>
+    <string name="search_hint">Pesquisar</string>
+    <string name="app_label">Buscar</string>
 </resources>
