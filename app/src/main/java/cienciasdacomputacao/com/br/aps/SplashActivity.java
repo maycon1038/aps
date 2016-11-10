@@ -5,12 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-/********* --- PMAM ---***********
- ********* --- DTI ---***********
- *****----- CAP. RUSO-----********
- ***** SD - MAYCON MEDEIROS*******
- ***** TÉC - GEORGE TAVARES*******
- *****--MANAUS - AM -19/09/2016**/
 
 public class SplashActivity extends AppCompatActivity {
 

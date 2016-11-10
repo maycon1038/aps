@@ -5,5 +5,4 @@
     android:voiceSearchMode="showVoiceSearchButton|launchRecognizer"
     android:searchSuggestAuthority="pm.am.gov.br.comandomobile.SearchableProvider"
     android:searchSuggestSelection=" ?">
-
 </searchable>
