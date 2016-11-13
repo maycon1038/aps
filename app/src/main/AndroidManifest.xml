@@ -20,15 +20,12 @@
         <activity android:name=".MainActivity"
         android:screenOrientation="landscape"
         android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".Main2Activity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".MenuActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <service android:name=".IniciarJogo">
-            <intent-filter>
-                <action android:name="iniciarservio" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </service>
     </application>
 
 </manifest>

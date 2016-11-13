@@ -23,19 +23,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     private MediaPlayer mp;
-    public static int posicao = 0;
-    private final int ANIMATION_CIRCLE_DELAY = 3000;
-    private final int ANIMATION_TRANSLATE_DELAY = 10;
-    private final int ANIMATION_CIRCLE_DELATE = 10;
+    public  int posicao = 0;
+    public   int ANIMATION_CIRCLE_DELAY = 3000;
+    public   int ANIMATION_TRANSLATE_DELAY = 1;
+    public   int ANIMATION_CIRCLE_DELATE = 1;
     public ImageView tvTranslate;
 
     public ImageView[] view;
-    private static int moverd = 130;
-    private static int cont = 1;
+    public  int moverd = 130;
+    public  int cont = 1;
     final Context context = this;
-    private static long cont_value =0;
-    private static int pontos=0;
-    ObjectAnimator termsConditionsAnim;
+    public  int pontos=0;
+    ObjectAnimator termsConditionsAnim,terms;
     private int contclick;
     private TextView txtp;
     private int contador=0;
@@ -139,82 +138,98 @@ public class MainActivity extends AppCompatActivity {
             posicao = 1;
         }else if((int) tvTranslate.getTranslationX()> 200 && (int) tvTranslate.getTranslationX()< 300){
             posicao = 2;
-        }else if((int) tvTranslate.getTranslationX()> 420 && (int) tvTranslate.getTranslationX() < 600){
+        }else if((int) tvTranslate.getTranslationX()> 300 && (int) tvTranslate.getTranslationX() < 600){
             posicao = 3;
-        }else if((int) tvTranslate.getTranslationX() >700 && (int) tvTranslate.getTranslationX()< 900){
+        }else if((int) tvTranslate.getTranslationX() >600 && (int) tvTranslate.getTranslationX() < 900){
             posicao = 4;
-        }else if((int) tvTranslate.getTranslationX() > 940 ){
+        }else if((int) tvTranslate.getTranslationX() > 900 ){
             posicao = 5;
         }
     }
 
 
     public void pontuar(){
-          if(posicao==1&& (int) view[1].getTranslationY()>=590 && (int) view[1].getTranslationY() < 700){
+          if(posicao==1&& (int) view[1].getTranslationY()>= 590 && (int) view[1].getTranslationY() < 690){
               pontos += 10;
               mp.start();
-          }else if(posicao==2 && (int) view[2].getTranslationY()> 590 && (int) view[2].getTranslationY() < 700){
+          }else if(posicao==2 && (int) view[2].getTranslationY()> 590 && (int) view[2].getTranslationY() < 690){
               pontos += 10;
               mp.start();
-          }else if(posicao==3&& (int) view[3].getTranslationY()> 590 && (int) view[3].getTranslationY() < 700){
+          }else if(posicao==3 && (int) view[3].getTranslationY()> 590 && (int) view[3].getTranslationY() < 690){
               pontos += 10;
               mp.start();
-          }else if(posicao==4&& (int) view[4].getTranslationY()> 590 && (int) view[4].getTranslationY() < 700){
+          }else if(posicao==4 && (int) view[4].getTranslationY()> 590 && (int) view[4].getTranslationY() < 690){
               pontos += 10;
               mp.start();
-          }else if(posicao==5&& (int) view[5].getTranslationY()> 590 && (int) view[5].getTranslationY() < 700){
+          }else if(posicao==5 && (int) view[5].getTranslationY()> 590 && (int) view[5].getTranslationY() < 690){
               pontos += 10;
               mp.start();
           }
 
       }
 
-    public void perderjogo() {
+    public void acelerar(){
+        if(pontos>500 && pontos<900){
+            ANIMATION_CIRCLE_DELAY = 2500;
 
+        }else if(pontos>900 && pontos<1500){
+            ANIMATION_CIRCLE_DELAY = 2000;
 
-        if(posicao == 1 && ((int) view[2].getTranslationY()> 590 && (int) view[2].getTranslationY() < 790) ||
-                ((int) view[3].getTranslationY()> 690 && (int) view[3].getTranslationY() < 790)||
-                ((int) view[4].getTranslationY()> 690 && (int) view[4].getTranslationY() < 790) ||
-                ((int) view[5].getTranslationY()> 690 && (int) view[5].getTranslationY() < 790)){
-            perderstar(1);
-        }else if(posicao == 2 && ((int) view[1].getTranslationY()> 590 && (int) view[1].getTranslationY() < 790) ||
-                ((int) view[3].getTranslationY()> 690 && (int) view[3].getTranslationY() < 790)||
-                ((int) view[4].getTranslationY()> 690 && (int) view[4].getTranslationY() < 790) ||
-                ((int) view[5].getTranslationY()> 60 && (int) view[5].getTranslationY() < 709)){
-            perderstar(1);
-        }else if(posicao == 3 && ((int) view[1].getTranslationY()> 590 && (int) view[1].getTranslationY() < 790) ||
-                ((int) view[2].getTranslationY()> 690 && (int) view[2].getTranslationY() < 790)||
-                ((int) view[4].getTranslationY()> 690 && (int) view[4].getTranslationY() < 790) ||
-                ((int) view[5].getTranslationY()> 690 && (int) view[5].getTranslationY() < 790)){
-            perderstar( 1);
-        }else if(posicao == 4 && ((int) view[1].getTranslationY()> 590 && (int) view[1].getTranslationY() < 790) ||
-                ((int) view[3].getTranslationY()> 690 && (int) view[3].getTranslationY() < 790)||
-                ((int) view[2].getTranslationY()> 690 && (int) view[2].getTranslationY() < 790) ||
-                ((int) view[5].getTranslationY()> 690 && (int) view[5].getTranslationY() < 790)){
-            perderstar( 1);
-        }else if(posicao == 5 && ((int) view[1].getTranslationY()> 590 && (int) view[1].getTranslationY() < 790) ||
-                ((int) view[3].getTranslationY()> 690 && (int) view[3].getTranslationY() < 790)||
-                ((int) view[4].getTranslationY()> 690 && (int) view[4].getTranslationY() < 790) ||
-                ((int) view[2].getTranslationY()> 690 && (int) view[2].getTranslationY() < 790)){
-            perderstar(1);
+        }else if(pontos>1500&& pontos<2000){
+            ANIMATION_CIRCLE_DELAY = 1500;
+
+        }else if(pontos>2000){
+            ANIMATION_CIRCLE_DELAY = 1000;
+
         }
-     ;
+
     }
 
-    private void perderstar(int num) {
-        contador += num;
+    public void perderjogo() {
+
+        if(posicao == 1 && ((int) view[2].getTranslationY()==690) ||
+                (posicao == 1 && (int) view[3].getTranslationY()==690 )||
+                (posicao == 1 && (int) view[4].getTranslationY()==690 ) ||
+                (posicao == 1 && (int) view[5].getTranslationY() == 690 )){
+            perderstar();
+        }else if(posicao == 2 && ((int) view[1].getTranslationY()==690 ) ||
+                (posicao == 2 && (int) view[3].getTranslationY() == 690 )||
+                (posicao == 2 && (int) view[4].getTranslationY() == 690 ) ||
+                (posicao == 2 && (int) view[5].getTranslationY() == 690 )){
+            perderstar();
+        }else if(posicao == 3 && ((int) view[1].getTranslationY()== 690 ) ||
+                (posicao == 3 && (int) view[2].getTranslationY() == 690 )||
+                (posicao == 3 && (int) view[4].getTranslationY() == 690 ) ||
+                (posicao == 3 && (int) view[5].getTranslationY() == 690 )){
+            perderstar();
+        }else if(posicao == 4 && ((int) view[1].getTranslationY()== 690 ) ||
+                (posicao == 4 && (int) view[3].getTranslationY() == 690 )||
+                (posicao == 4 && (int) view[2].getTranslationY() == 690 ) ||
+                (posicao == 4 && (int) view[5].getTranslationY() == 690 )){
+            perderstar();
+        }else if(posicao == 5 && ((int) view[1].getTranslationY()== 690 ) ||
+                (posicao == 5 && (int) view[3].getTranslationY() == 690 )||
+                (posicao == 5 && (int) view[4].getTranslationY() == 690 ) ||
+                (posicao == 5 && (int) view[2].getTranslationY() == 690 )){
+            perderstar();
+        }
+    }
+
+    private void perderstar() {
+        contador +=1;
         if(contador==1 ){
             star1.setBackground(getResources().getDrawable(star_big_off));
-            contador=1;
-        }else  if(contador==2){
+            termsConditionsAnim.end();
+        }else if(contador==2){
             star2.setBackground(getResources().getDrawable(star_big_off));
-            contador=2;
-        }else  if(contador==3){
+            termsConditionsAnim.end();
+        }else if(contador==3){
             star3.setBackground(getResources().getDrawable(star_big_off));
-          //  termsConditionsAnim.cancel();
-         //   termsConditionsAnim.getListeners().clear();
-            Toast.makeText(context, " voce perdeu", Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(context, " você perdeu ", Toast.LENGTH_SHORT).show();
+            termsConditionsAnim.cancel();
+            termsConditionsAnim.getListeners().clear();
+            terms.cancel();
+            terms.getListeners().clear();
         }
 
     }
@@ -242,12 +257,13 @@ public class MainActivity extends AppCompatActivity {
             Random random = new Random();
             cont = random.nextInt(5) + 1;
             startCircleAnimation();
+            perderjogo();
         }
 
         @Override
         public void onAnimationCancel(Animator animation) {
 
-            animation.getListeners().clear();
+
 
         }
 
@@ -257,10 +273,10 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void startAnimation() {
-         ObjectAnimator termsConditionsAnim = ObjectAnimator.ofFloat(txtp, "translationY", 0, 0);
-        termsConditionsAnim.setDuration(ANIMATION_CIRCLE_DELATE);
-        termsConditionsAnim.addListener(listener2);
-        termsConditionsAnim.start();
+        terms = ObjectAnimator.ofFloat(txtp, "translationY", 0, 0);
+        terms.setDuration(ANIMATION_CIRCLE_DELATE);
+        terms.addListener(listener2);
+        terms.start();
 
 
     }
@@ -279,6 +295,7 @@ public class MainActivity extends AppCompatActivity {
             posicao_dr();
             pontuar();
             perderjogo();
+            acelerar();
             txtp.setText(String.valueOf(pontos));
 
         }
@@ -286,13 +303,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onAnimationCancel(Animator animation) {
 
-            animation.getListeners().clear();
+
 
         }
 
         @Override
         public void onAnimationRepeat(Animator animation) {
-            pontuar();
+
 
         }
     };

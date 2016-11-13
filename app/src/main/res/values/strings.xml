@@ -2,4 +2,6 @@
     <string name="app_name">aps</string>
     <string name="search_hint">Pesquisar</string>
     <string name="app_label">Buscar</string>
+    <string name="vencer">PARABÉNS VOCÊ VBNCEU!</string>
+    <string name="totalpontos">TOTAL: </string>
 </resources>

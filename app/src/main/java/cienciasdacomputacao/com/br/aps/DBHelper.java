@@ -13,7 +13,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-           db.execSQL("CREATE TABLE Updatetable( _id INTEGER PRIMARY KEY AUTOINCREMENT, tabelas VARCHAR(20), data_time VARCHAR(20));");
+           db.execSQL("CREATE TABLE Updatetable( _id INTEGER PRIMARY KEY AUTOINCREMENT, jogador VARCHAR(100), fase INT, estrela INT, ponto INT);");
 
     }
 

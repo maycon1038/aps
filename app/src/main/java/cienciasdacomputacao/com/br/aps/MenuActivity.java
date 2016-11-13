@@ -11,15 +11,15 @@ import android.widget.Toast;
 
 public class MenuActivity extends AppCompatActivity implements ImageView.OnClickListener, ImageView.OnLongClickListener{
 
-   private ImageView btn1, btn2, btn3;
+   private View btn1, btn2, btn3;
    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-         btn1 = (ImageView)findViewById(R.id.btnfase1);
-         btn2 = (ImageView)findViewById(R.id.btnfase2);
-         btn3 = (ImageView)findViewById(R.id.btnfase3);
+         btn1 = findViewById(R.id.btnfase1);
+         btn2 = findViewById(R.id.btnfase2);
+         btn3 = findViewById(R.id.btnfase3);
 
          btn1.setOnLongClickListener(this);
          btn2.setOnLongClickListener(this);
@@ -30,14 +30,28 @@ public class MenuActivity extends AppCompatActivity implements ImageView.OnClick
     }
 
     @Override
-    public void onClick(View v) {
-        startActivity(new Intent(this, MainActivity.class));
+    public void onClick(View view) {
+          if(view==btn1){
+              startActivity(new Intent(this, MainActivity.class));
+          }else if(view==btn2){
+              startActivity(new Intent(this, Main2Activity.class));
+          }else if(view==btn3){
+              Toast.makeText(this, "Em Construção", Toast.LENGTH_SHORT).show();
+          }
+
 
     }
 
+
     @Override
     public boolean onLongClick(View v) {
-        Toast.makeText(this, "você clicou no botão Long", Toast.LENGTH_SHORT).show();
+        if(v==btn1){
+            startActivity(new Intent(this, MainActivity.class));
+        }else if(v==btn2){
+            startActivity(new Intent(this, Main2Activity.class));
+        }else if(v==btn3){
+            Toast.makeText(this, "Em Construção", Toast.LENGTH_SHORT).show();
+        }
         return false;
     }
 }

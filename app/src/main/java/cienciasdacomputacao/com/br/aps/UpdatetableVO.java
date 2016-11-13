@@ -2,23 +2,41 @@ package cienciasdacomputacao.com.br.aps;
 
 
 public class UpdatetableVO{
-    private String tabelas;
-    private String date_time;
+    private String jogador;
+    private int fase;
+    private int estrela;
+    private int ponto;
 
-    public String getDate_time() {
-        return date_time;
+    public int getEstrela() {
+        return estrela;
     }
 
-    public void setDate_time(String date_time) {
-        this.date_time = date_time;
+    public void setEstrela(int estrela) {
+        this.estrela = estrela;
     }
 
-    public String getTabelas() {
-        return tabelas;
+    public int getPonto() {
+        return ponto;
     }
 
-    public void setTabelas(String tabelas) {
-        this.tabelas = tabelas;
+    public void setPonto(int ponto) {
+        this.ponto = ponto;
+    }
+
+    public int getFase() {
+        return fase;
+    }
+
+    public void setFase(int fase) {
+        this.fase = fase;
+    }
+
+    public String getJogador() {
+        return jogador;
+    }
+
+    public void setJogador(String jogador) {
+        this.jogador = jogador;
     }
 
 

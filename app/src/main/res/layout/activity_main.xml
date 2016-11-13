@@ -64,7 +64,8 @@
                 android:layout_marginLeft="40dp"
                 android:background="@drawable/circle"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"/>
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="35dp" />
 
 
         </RelativeLayout>
