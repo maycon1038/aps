@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context="cienciasdacomputacao.com.br.aps.MenuActivity">
+
+
+<FrameLayout
+    android:layout_width="300dp"
+    android:layout_height="150dp"
+    android:background="@drawable/circulo"
+    android:layout_centerInParent="true">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*Opcional"
+        android:id="@+id/opcao"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_gravity="top|left"/>
+     <EditText
+    android:id="@+id/dialog_txt_name"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:hint="Nome"
+    android:singleLine="true" >
+    <requestFocus />
+</EditText>
+<Button
+android:id="@+id/btn_salvar"
+android:layout_width="130dp"
+    android:layout_margin="10dp"
+android:layout_height="wrap_content"
+android:layout_gravity="bottom|right"
+android:background="@drawable/botao"
+android:text="Salvar" />
+
+    <Button
+    android:id="@+id/btn_cancel"
+        android:layout_width="130dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/botao"
+        android:layout_margin="10dp"
+    android:layout_gravity="bottom|left"
+    android:padding="5dp"
+    android:text="Cancel" />
+
+</FrameLayout>
+
+    </RelativeLayout>

@@ -39,12 +39,14 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:padding="2dp"
             android:layout_gravity="left|center"
             android:background="@drawable/coracao_on"
             android:id="@+id/btn_vida1" />
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:padding="2dp"
             android:layout_gravity="center|center"
             android:background="@drawable/coracao_on"
             android:id="@+id/btn_vida2" />
@@ -52,6 +54,7 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:padding="2dp"
             android:layout_gravity="right|center"
             android:background="@drawable/coracao_on"
             android:id="@+id/btn_vida3" />
@@ -81,12 +84,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
+            android:padding="2dp"
             android:background="@android:drawable/btn_star_big_off"
             android:id="@+id/btn_star1" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:padding="2dp"
             android:background="@android:drawable/btn_star_big_off"
             android:id="@+id/btn_star2" />
 
@@ -94,6 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:padding="2dp"
             android:background="@android:drawable/btn_star_big_off"
             android:id="@+id/btn_star3" />
     </FrameLayout>
@@ -253,21 +259,7 @@
             android:layout_alignParentBottom="true"
             android:layout_toEndOf="@+id/btnb4" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="200dp"
-            android:text="SAIR"
-            android:gravity="center"
-            android:textSize="25dp"
-            android:background="@drawable/fundotextoaction"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            android:onClick="SAIRDOJOGO"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/btnbf1"
-            android:layout_marginStart="17dp"
-            android:id="@+id/textView" />
+
     </RelativeLayout>
 
 
@@ -365,20 +357,40 @@
         android:layout_alignParentEnd="true"
         android:layout_above="@+id/frameLayout3"
         android:layout_below="@+id/frameLayout" />
+    <FrameLayout
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:layout_toEndOf="@+id/frameLayout">
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/botao"
+        android:text="PAUSE"
+        android:padding="5dp"
+        android:gravity="center"
+        android:id="@+id/btnpause"
+        android:textSize="18dp"
+        android:layout_gravity="left"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:onClick="PAUSE"/>
 
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:background="@drawable/fundotextoaction"
-        android:text="PAUSE"
+        android:text="SAIR"
+        android:padding="5dp"
         android:gravity="center"
-        android:id="@+id/btnpause"
-        android:textSize="25dp"
-        android:textColor="@color/colorAccent"
+        android:textSize="18dp"
+        android:background="@drawable/botao"
+        android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        android:layout_gravity="left|top"
-        android:onClick="PAUSE"/>
+        android:onClick="SAIRDOJOGO"
+        android:layout_gravity="right"
+        android:id="@+id/textView" />
+
+    </FrameLayout>
 
 </RelativeLayout>

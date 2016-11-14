@@ -4,7 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
@@ -12,8 +16,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -44,12 +51,13 @@ public class Fase01Activity extends AppCompatActivity {
     private TextView titulo;
     private TextView showpontos;
     private Button reStart;
+    UpdatetableDAO dao = new UpdatetableDAO(this);
+    UpdatetableVO vo = new UpdatetableVO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fase01);
-
 
         TextView left = (TextView) findViewById(R.id.imageButtonleft);
         TextView right = (TextView) findViewById(R.id.imageButtonright);
@@ -365,12 +373,12 @@ public class Fase01Activity extends AppCompatActivity {
         }
     };
 
-   /* private void AlertarMensagem(Context contest, final Activity act) {
+  private void AlertarMensagem(Context contest, final Activity act) {
 
         final Dialog alert = new Dialog(contest);
-        alert.setContentView(R.layout.mensagem_pop);
+        alert.setContentView(R.layout.dialoglayout);
         alert.setTitle("GAME OVER");
-        alert.findViewById(R.id.bbtnsair).setOnClickListener(new View.OnClickListener() {
+        alert.findViewById(R.id.btn_salvar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alert.dismiss();
@@ -386,7 +394,7 @@ public class Fase01Activity extends AppCompatActivity {
             }
         });
         //btnrestart
-        alert.findViewById(R.id.btnrestart).setOnClickListener(new View.OnClickListener() {
+        alert.findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alert.dismiss();
@@ -394,7 +402,7 @@ public class Fase01Activity extends AppCompatActivity {
             }
         });
         alert.show();
-    }*/
+    }
 
     public void showestrelas() {
         switch (totalestrelas) {
@@ -415,23 +423,16 @@ public class Fase01Activity extends AppCompatActivity {
 
     private void salvar() {
 
-        UpdatetableDAO dao = new UpdatetableDAO(this);
-        UpdatetableVO vo = new UpdatetableVO();
-
-
             Cursor c =  dao.buscarString("1");
             int pontosbd=0;
             while (c.moveToNext()) {
                 pontosbd = c.getInt(c.getColumnIndex("ponto"));
-
             }
-
         if(pontosbd < pontos) {
-            vo.setFase(1);
-            vo.setEstrela(totalestrelas);
-            vo.setPonto(pontos);
-            dao.insert(vo);
+                exibirMensagemEdt("Novo Recorde", "Digite Seu Nome!");
+
         }else{
+            finish();
             return;
         }
     }
@@ -666,6 +667,8 @@ public class Fase01Activity extends AppCompatActivity {
 
         }else{
             showProgress(false);
+            Toast.makeText(Fase01Activity.this, "Em Construção", Toast.LENGTH_SHORT).show();
+            finish();
         }
 
     }
@@ -689,7 +692,6 @@ public class Fase01Activity extends AppCompatActivity {
     public void SAIR(View v){
         showProgress(false);
         salvar();
-        finish();
     }
     public void PAUSE(View v){
         TextView start =  (TextView)findViewById(R.id.btnpause);
@@ -714,8 +716,36 @@ public class Fase01Activity extends AppCompatActivity {
         terms.resume();
         showProgress(false);
         salvar();
-        finish();
+    }
 
+    public void exibirMensagemEdt(String titulo, String texto){
+
+        AlertDialog.Builder mensagem = new AlertDialog.Builder(Fase01Activity.this);
+        mensagem.setTitle(titulo);
+        mensagem.setMessage(texto);
+        // DECLARACAO DO EDITTEXT
+        final EditText input = new EditText(this);
+        mensagem.setView(input);
+        mensagem.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+
+
+               String  nome =  input.getText().toString().trim();
+                vo.setJogador(nome);
+                vo.setFase(1);
+                vo.setEstrela(totalestrelas);
+                vo.setPonto(pontos);
+                dao.insert(vo);
+                Fase01Activity.this.finish();
+
+            }
+
+        });
+        mensagem.show();
+        // FORÇA O TECLADO APARECER AO ABRIR O ALERT
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 
 }

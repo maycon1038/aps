@@ -2,21 +2,22 @@ package cienciasdacomputacao.com.br.aps;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
-
-import static android.R.drawable.btn_star_big_on;
 import static android.R.drawable.star_big_off;
-import static android.R.drawable.star_big_on;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        ImageButton left = (ImageButton) findViewById(R.id.imageButtonleft);
+     /*   ImageButton left = (ImageButton) findViewById(R.id.imageButtonleft);
         ImageButton right = (ImageButton) findViewById(R.id.imageButtonright);
         ImageButton pause = (ImageButton) findViewById(R.id.imageButtonpause);
         txtp = (TextView) findViewById(R.id.txtTextoPontos);
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         startCircleAnimation();
-        startAnimation();
+        startAnimation();*/
     }
 
     private void posicao_dr() {
@@ -322,6 +323,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+
+
  /*   Intent intent = new Intent(this, IniciarJogo.class);
             PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, 0);
             Calendar time = Calendar.getInstance();
