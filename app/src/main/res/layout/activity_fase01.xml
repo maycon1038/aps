@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fase01Activity">
+
+    <FrameLayout
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/btnmover_lixo2"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true">
+    </FrameLayout>
+
+  <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+      android:id="@+id/frameLayout3">
+
+  </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/fundotexto"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/frameLayout">
+
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="left|center"
+            android:background="@drawable/coracao_on"
+            android:id="@+id/btn_vida1" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center|center"
+            android:background="@drawable/coracao_on"
+            android:id="@+id/btn_vida2" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="right|center"
+            android:background="@drawable/coracao_on"
+            android:id="@+id/btn_vida3" />
+    </FrameLayout>
+
+   <!-- <ImageView
+        android:id="@+id/fundo"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/lixeiraseletivareciclavel"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/RelativeLayoutid"
+        android:layout_alignRight="@+id/RelativeLayoutid"/>-->
+
+    <FrameLayout
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:background="@drawable/fundotexto"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="130dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/frameLayout2">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:background="@android:drawable/btn_star_big_off"
+            android:id="@+id/btn_star1" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:drawable/btn_star_big_off"
+            android:id="@+id/btn_star2" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@android:drawable/btn_star_big_off"
+            android:id="@+id/btn_star3" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:background="@drawable/fundotexto"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:text="Pontos: "
+            android:id="@+id/textlayout"/>
+
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|right"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:gravity="center"
+            android:id="@+id/txtTextoPontos"/>
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="321dp"
+        android:layout_gravity="left|bottom"
+         android:id="@+id/imageButtonleft"
+        android:layout_below="@+id/frameLayout"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/frameLayout3" />
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/RelativeLayoutid"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/btnbf2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/vidrofundo"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/btnb1" />
+
+        <ImageView
+            android:id="@+id/btnbf1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/organicofundo"
+            android:layout_alignParentBottom="true" />
+        <ImageView
+            android:id="@+id/btnbf3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/papelfundo"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/btnb2" />
+
+        <ImageView
+            android:id="@+id/btnbf5"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/metaisfundo"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/btnb4" />
+
+        <ImageView
+            android:id="@+id/btnbf"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/plasticofundo"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/btnb3" />
+
+        <FrameLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/circle"
+            android:id="@+id/btnmover_lixo"
+            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true">
+
+        </FrameLayout>
+
+
+
+        <ImageView
+            android:id="@+id/btnb1"
+            android:layout_width="80dp"
+            android:onClick="lixeiraOrganica"
+            android:layout_height="80dp"
+            android:background="@drawable/organicofrente"
+            android:layout_alignParentBottom="true" />
+
+
+
+
+
+        <ImageView
+            android:id="@+id/btnb2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:onClick="lixeiraVidro"
+            android:background="@drawable/vidrofrente"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/btnb1" />
+
+
+
+        <ImageView
+            android:id="@+id/btnb3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:onClick="lixeiraPapel"
+            android:background="@drawable/papelfrente"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/btnb2" />
+
+
+
+
+        <ImageView
+            android:id="@+id/btnb4"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:onClick="lixeiraPlastico"
+            android:background="@drawable/plasticofrente"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/btnb3" />
+
+
+
+
+        <ImageView
+            android:id="@+id/btnb5"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:onClick="lixeiraMetal"
+            android:background="@drawable/metaisfrente"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/btnb4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="200dp"
+            android:text="SAIR"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:background="@drawable/fundotextoaction"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:onClick="SAIRDOJOGO"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/btnbf1"
+            android:layout_marginStart="17dp"
+            android:id="@+id/textView" />
+    </RelativeLayout>
+
+
+   <FrameLayout
+       android:layout_width="300dp"
+       android:layout_height="200dp"
+       android:visibility="gone"
+       android:id="@+id/framelayoutpop"
+       android:layout_centerInParent="true">
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textColor="@color/colorPrimaryDark"
+           android:textSize="30dp"
+           android:gravity="center"
+           android:id="@+id/txttitulo"
+           android:textStyle="bold"
+           android:text=""
+           android:layout_gravity="top"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textColor="@color/colorPrimaryDark"
+           android:textSize="30dp"
+           android:gravity="center"
+           android:textStyle="bold"
+           android:layout_marginTop="40dp"
+           android:id="@+id/txtpontos"
+           android:text=""
+           android:layout_gravity="top"/>
+
+
+       <LinearLayout
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_gravity="center"
+           android:layout_height="wrap_content">
+
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@android:drawable/star_big_off"
+               android:id="@+id/star1"
+               android:layout_weight="1" />
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@android:drawable/star_big_off"
+               android:id="@+id/star2"
+               android:layout_weight="1" />
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@android:drawable/star_big_off"
+               android:id="@+id/star3"
+               android:layout_weight="1" />
+       </LinearLayout>
+
+
+
+
+       <LinearLayout
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_gravity="bottom"
+           android:layout_height="wrap_content">
+
+           <Button
+               android:text="Continuar"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@drawable/botao"
+               android:id="@+id/btnproximafase"
+               android:onClick="Restart_Start_Fase"
+               android:layout_weight="0.47" />
+
+           <Button
+               android:text="Sair"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@drawable/botao"
+               android:id="@+id/btnsair"
+               android:onClick="SAIR"
+               android:layout_weight="0.47" />
+       </LinearLayout>
+   </FrameLayout>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="246dp"
+          android:layout_gravity="right|bottom"
+        android:id="@+id/imageButtonright"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/frameLayout3"
+        android:layout_below="@+id/frameLayout" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:background="@drawable/fundotextoaction"
+        android:text="PAUSE"
+        android:gravity="center"
+        android:id="@+id/btnpause"
+        android:textSize="25dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:layout_gravity="left|top"
+        android:onClick="PAUSE"/>
+
+</RelativeLayout>

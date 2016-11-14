@@ -48,12 +48,12 @@ public class UpdatetableDAO {
 
         String[] busca = new String[]{txtbusca};
 
-        Cursor cursor = db.query(table_name, colunas, "jogador = ?", busca, null, null, "_id ASC", null);
+        Cursor cursor = db.query(table_name, colunas, "fase = ?", busca, null, null, "_id ASC", null);
         return cursor;
     }
     public boolean update(UpdatetableVO tabela , int cod) {
 
-        String   where = "jogador = ?";
+        String   where = "fase = ?";
         SQLiteDatabase db     = new DBHelper(ctx).getWritableDatabase();
         ContentValues  values = new ContentValues();
         values.put("jogador", tabela.getJogador());
@@ -72,6 +72,15 @@ public class UpdatetableDAO {
         SQLiteDatabase db     = new DBHelper(ctx).getWritableDatabase();
         Cursor  cursor = db.query(table_name, colunas, null, null, null, null, null);
         return cursor.getCount();
+    }
+    public int totalpontos(int codigo) {
+        int total=0;
+        SQLiteDatabase db     = new DBHelper(ctx).getWritableDatabase();
+        Cursor  c = db.query(table_name, colunas, "fase = 1", new String[]{String.valueOf(codigo)}, null, null, null);
+        if (c != null) {
+            total =  c.getInt(c.getColumnIndex("ponto"));
+        }
+      return total;
     }
     public List<UpdatetableVO> lista() {
 

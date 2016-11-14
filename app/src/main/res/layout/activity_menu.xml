@@ -5,7 +5,7 @@
     android:id="@+id/activity_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ccc"
+    android:background="@drawable/gradient_background"
     tools:context="cienciasdacomputacao.com.br.aps.MenuActivity">
 
     <LinearLayout
@@ -15,55 +15,167 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="20dp"
-            android:text="start"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="20dp"
-            android:text="pause"/>
-
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_height="100dp"
             android:layout_gravity="center">
+            <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center|right">
+                <cienciasdacomputacao.com.br.aps.image.ImageShape
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/fase1"
+                    android:layout_gravity="center"/>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@android:drawable/ic_lock_lock"
+                    android:layout_gravity="center"
+                    android:id="@+id/btnfase3"/>
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/btnfase3"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                app:srcCompat="@mipmap/ic_launcher"
-                android:layout_gravity="center|right"/>
-
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/star_big_off"
+                    android:id="@+id/fase3star1"
+                    android:layout_weight="1"
+                    android:layout_gravity="bottom|left"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/star_big_off"
+                    android:id="@+id/fase3star2"
+                    android:layout_weight="1"
+                    android:layout_gravity="bottom|center"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/star_big_off"
+                    android:id="@+id/fase3star3"
+                    android:layout_weight="1"
+                    android:layout_gravity="bottom|right"/>
+            </FrameLayout>
+        <FrameLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center|center">
+            <cienciasdacomputacao.com.br.aps.image.ImageShape
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/fase1"
+                android:layout_gravity="center"
+                android:id="@+id/btnfasef2"/>
+        <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@android:drawable/ic_lock_lock"
+                android:layout_gravity="center"
+                android:id="@+id/btnfase2"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher"
-                android:id="@+id/btnfase2"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_gravity="center|center"/>
+                android:background="@android:drawable/star_big_off"
+                android:id="@+id/fase2star1"
+                android:layout_weight="1"
+                android:layout_gravity="bottom|left"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher"
+                android:background="@android:drawable/star_big_off"
+                android:id="@+id/fase2star2"
+                android:layout_weight="1"
+                android:layout_gravity="bottom|center"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/star_big_off"
+                android:id="@+id/fase2star3"
+                android:layout_weight="1"
+                android:layout_gravity="bottom|right"/>
+            </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left">
+            <cienciasdacomputacao.com.br.aps.image.ImageShape
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/fase1"
                 android:id="@+id/btnfase1"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_gravity="center|left"/>
+                android:layout_marginRight="10dp" />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/btnfase1cadeado"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/star_big_off"
+                android:id="@+id/fase1star1"
+                android:layout_weight="1"
+                android:layout_gravity="bottom|left"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/star_big_off"
+                android:id="@+id/fase1star2"
+                android:layout_weight="1"
+                android:layout_gravity="bottom|center"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/star_big_off"
+                android:id="@+id/fase1star3"
+                android:layout_weight="1"
+                android:layout_gravity="bottom|right"/>
+            </FrameLayout>
 
         </FrameLayout>
 
 
     </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:id="@+id/framelayoutmenu"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20dp"
+            android:background="@drawable/botao"
+            android:gravity="center"
+            android:id="@+id/txtmenulimpar"
+            android:onClick="LIMPARMENU"
+            android:textStyle="bold"
+            android:text="Limpar Recorde"
+            android:layout_gravity="top"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp"
+            android:id="@+id/txtmenurecord"
+            android:layout_gravity="top"/>
+
+    </FrameLayout>
+
 </RelativeLayout>
