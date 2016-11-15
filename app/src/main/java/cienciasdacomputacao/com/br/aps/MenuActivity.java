@@ -4,30 +4,18 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Random;
-
 import static android.R.drawable.star_big_off;
 import static android.R.drawable.star_big_on;
-import static cienciasdacomputacao.com.br.aps.R.drawable.circle;
 
 
 public class MenuActivity extends AppCompatActivity implements ImageView.OnClickListener, ImageView.OnLongClickListener {
@@ -53,9 +41,9 @@ public class MenuActivity extends AppCompatActivity implements ImageView.OnClick
         btn2 = findViewById(R.id.btnfase2);
         btn3 = findViewById(R.id.btnfase3);
 
-        btn1.setOnLongClickListener(this);
+      /*  btn1.setOnLongClickListener(this);
         btn2.setOnLongClickListener(this);
-        btn3.setOnLongClickListener(this);
+        btn3.setOnLongClickListener(this);*/
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
         btn3.setOnClickListener(this);
@@ -102,9 +90,9 @@ public class MenuActivity extends AppCompatActivity implements ImageView.OnClick
         if (view == btn1) {
             startActivity(new Intent(this, Fase01Activity.class));
         } else if (view == btn2) {
-            Toast.makeText(MenuActivity.this, "Em Construção", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Baixe a Version 2.0 Pro", Toast.LENGTH_SHORT).show();
         } else if (view == btn3) {
-            Toast.makeText(MenuActivity.this, "Em Construção", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Baixe a Version 2.0 Pro", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -119,7 +107,7 @@ public class MenuActivity extends AppCompatActivity implements ImageView.OnClick
         }else if(v==btn2){
             startActivity(new Intent(this, MainActivity.class));
         } else if (v == btn3) {
-            Toast.makeText(this, "Em Construção", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Baixe a Version 2.0 Pro", Toast.LENGTH_SHORT).show();
         }
         return false;
     }
@@ -154,21 +142,11 @@ public class MenuActivity extends AppCompatActivity implements ImageView.OnClick
     }
 
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+
     private void showProgress(final boolean show) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
             layoutmenu.setVisibility(show ? View.VISIBLE : View.GONE);
-            layoutmenu.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    layoutmenu.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            layoutmenu.setVisibility(show ? View.VISIBLE : View.GONE);
-        }
+
     }
 
     @Override

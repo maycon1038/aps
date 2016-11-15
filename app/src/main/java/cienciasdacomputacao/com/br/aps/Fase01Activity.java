@@ -30,11 +30,10 @@ import static android.R.drawable.star_big_on;
 public class Fase01Activity extends AppCompatActivity {
 
 
-    private MediaPlayer mp;
-    public int posicaoInicial = 3;
-    public int ANIMATION_CIRCLE_DELAY = 2500;
-    public int ANIMATION_TRANSLATE_DELAY = 1;
-    public int ANIMATION_CIRCLE_DELATE = 50;
+    private int posicaoInicial = 3;
+    private int ANIMATION_CIRCLE_DELAY = 2500;
+    private int ANIMATION_TRANSLATE_DELAY = 1;
+    private int ANIMATION_CIRCLE_DELATE = 50;
     private View tvTranslatehoriz, imgemfundo;
     private Context ctx = this;
     public int moverd = 0;
@@ -53,6 +52,7 @@ public class Fase01Activity extends AppCompatActivity {
     private Button reStart;
     UpdatetableDAO dao = new UpdatetableDAO(this);
     UpdatetableVO vo = new UpdatetableVO();
+    private MediaPlayer vidro, pete,lata,organico,mp,mgp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,6 @@ public class Fase01Activity extends AppCompatActivity {
 
         TextView left = (TextView) findViewById(R.id.imageButtonleft);
         TextView right = (TextView) findViewById(R.id.imageButtonright);
-      /*  ImageButton pause = (ImageButton) findViewById(R.id.imageButtonpause);*/
         txtp = (TextView) findViewById(R.id.txtTextoPontos);
         imgemfundo = findViewById(R.id.btnmover_lixo2);
         tvTranslatehoriz = findViewById(R.id.btnmover_lixo);
@@ -83,6 +82,11 @@ public class Fase01Activity extends AppCompatActivity {
 
 
         mp = MediaPlayer.create(getBaseContext(), R.raw.click);
+        mgp = MediaPlayer.create(getBaseContext(), R.raw.megaman);
+        vidro = MediaPlayer.create(getBaseContext(), R.raw.vidro);
+        pete = MediaPlayer.create(getBaseContext(), R.raw.pete);
+        lata = MediaPlayer.create(getBaseContext(), R.raw.lata);
+        organico = MediaPlayer.create(getBaseContext(), R.raw.organico);
 
         btnb1 = findViewById(R.id.btnb1);
 
@@ -97,6 +101,7 @@ public class Fase01Activity extends AppCompatActivity {
                     translateAnim.setDuration(ANIMATION_TRANSLATE_DELAY);
                     translateAnim.start();
                     posicaoInicial--;
+                    mp.start();
 
                 }
             }
@@ -111,6 +116,7 @@ public class Fase01Activity extends AppCompatActivity {
                     translateAnim.setDuration(ANIMATION_TRANSLATE_DELAY);
                     translateAnim.start();
                     posicaoInicial++;
+                    mp.start();
 
                 }
             }
@@ -120,6 +126,7 @@ public class Fase01Activity extends AppCompatActivity {
 
         startCircleAnimation();
         startAnimation();
+        mgp.start();
 
     }
 
@@ -142,7 +149,7 @@ public class Fase01Activity extends AppCompatActivity {
             case 1:
                 if (cont == 1) {
                     pontos += 10;
-                    mp.start();
+                    organico.start();
 
                 } else {
                     vidas();
@@ -151,7 +158,7 @@ public class Fase01Activity extends AppCompatActivity {
             case 2:
                 if (cont == 2) {
                     pontos += 10;
-                    mp.start();
+                    vidro.start();
 
                 } else {
                     vidas();
@@ -160,7 +167,7 @@ public class Fase01Activity extends AppCompatActivity {
             case 3:
                 if (cont == 3) {
                     pontos += 10;
-                    mp.start();
+                    organico.start();
 
                 } else {
                     vidas();
@@ -170,7 +177,7 @@ public class Fase01Activity extends AppCompatActivity {
             case 4:
                 if (cont == 4) {
                     pontos += 10;
-                    mp.start();
+                    pete.start();
 
                 } else {
                     vidas();
@@ -180,7 +187,7 @@ public class Fase01Activity extends AppCompatActivity {
             case 5:
                 if (cont == 5) {
                     pontos += 10;
-                    mp.start();
+                    lata.start();
 
                 } else {
                     vidas();
@@ -249,7 +256,9 @@ public class Fase01Activity extends AppCompatActivity {
             termsConditionsAnim.resume();
             terms.removeAllListeners();
             terms.resume();
+            mgp.stop();
             resumodojogo();
+
 
         }
 
@@ -294,7 +303,7 @@ public class Fase01Activity extends AppCompatActivity {
         @Override
         public void onAnimationEnd(Animator animation) {
             startCircleAnimation();
-
+              mgp.start();
 
         }
 
@@ -333,8 +342,6 @@ public class Fase01Activity extends AppCompatActivity {
         terms.setDuration(ANIMATION_CIRCLE_DELATE);
         terms.addListener(listener2);
         terms.start();
-
-
         if (Verificar()) {
             pontuar();
         }
@@ -437,16 +444,10 @@ public class Fase01Activity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-
-    }
-
     public void resert() {
        startActivity(new Intent(getBaseContext(), Fase01Activity.class));
         finish();
+        mgp.stop();
     }
 
     public void verificarposicao(int position, int botton) {
@@ -633,27 +634,31 @@ public class Fase01Activity extends AppCompatActivity {
 
     public void lixeiraOrganica(View v) {
         verificarposicao(posicaoInicial, 1);
-
+        mp.start();
 
     }
 
     public void lixeiraVidro(View v) {
         verificarposicao(posicaoInicial, 2);
+        mp.start();
 
     }
 
     public void lixeiraPapel(View v) {
         verificarposicao(posicaoInicial, 3);
+        mp.start();
 
     }
 
     public void lixeiraPlastico(View v) {
         verificarposicao(posicaoInicial, 4);
+        mp.start();
 
     }
 
     public void lixeiraMetal(View v) {
         verificarposicao(posicaoInicial, 5);
+        mp.start();
 
     }
 
@@ -662,36 +667,27 @@ public class Fase01Activity extends AppCompatActivity {
         Button start =  (Button)findViewById(R.id.btnproximafase);
         if(start.getText().toString().equals("Restart")){
             showProgress(false);
+             mgp.stop();
             startActivity(new Intent(getBaseContext(), Fase01Activity.class));
             finish();
 
         }else{
             showProgress(false);
-            Toast.makeText(Fase01Activity.this, "Em Construção", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Fase01Activity.this, "Baixe a Version Pro 2.0", Toast.LENGTH_SHORT).show();
             finish();
         }
 
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+
     private void showProgress(final boolean show) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-            mostrarbotoes.setVisibility(show ? View.VISIBLE : View.GONE);
-            mostrarbotoes.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mostrarbotoes.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            mostrarbotoes.setVisibility(show ? View.VISIBLE : View.GONE);
-        }
+
+        mostrarbotoes.setVisibility(show ? View.VISIBLE : View.GONE);
     }
     public void SAIR(View v){
         showProgress(false);
         salvar();
+        mgp.stop();
     }
     public void PAUSE(View v){
         TextView start =  (TextView)findViewById(R.id.btnpause);
@@ -699,10 +695,13 @@ public class Fase01Activity extends AppCompatActivity {
                start.setText("START");
                termsConditionsAnim.pause();
                terms.pause();
+               mgp.stop();
            }else if(start.getText().toString().equals("START")){
                termsConditionsAnim.start();
                terms.start();
                start.setText("PAUSE");
+               mgp = MediaPlayer.create(getBaseContext(), R.raw.megaman);
+               mgp.start();
            }
 
 
@@ -715,6 +714,7 @@ public class Fase01Activity extends AppCompatActivity {
         terms.removeAllListeners();
         terms.resume();
         showProgress(false);
+        mgp.stop();
         salvar();
     }
 

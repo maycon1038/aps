@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">aps</string>
+    <string name="app_name">Ambiental APS</string>
     <string name="search_hint">Pesquisar</string>
     <string name="app_label">Buscar</string>
     <string name="vencer">PARABÉNS VOCÊ VBNCEU!</string>
     <string name="totalpontos">TOTAL: </string>
+    <string name="aluno01">Maycon Medeiros</string>
+    <string name="version">Version 1.0</string>
 </resources>
