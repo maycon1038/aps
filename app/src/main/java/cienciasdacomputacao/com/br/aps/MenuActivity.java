@@ -105,7 +105,7 @@ public class MenuActivity extends AppCompatActivity implements ImageView.OnClick
         if(v==btn1){
             startActivity(new Intent(this, Fase01Activity.class));
         }else if(v==btn2){
-            startActivity(new Intent(this, MainActivity.class));
+            Toast.makeText(this, "Baixe a Version 2.0 Pro", Toast.LENGTH_SHORT).show();
         } else if (v == btn3) {
             Toast.makeText(this, "Baixe a Version 2.0 Pro", Toast.LENGTH_SHORT).show();
         }

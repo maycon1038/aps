@@ -50,9 +50,10 @@ public class Fase01Activity extends AppCompatActivity {
     private TextView titulo;
     private TextView showpontos;
     private Button reStart;
+    private String son="";
     UpdatetableDAO dao = new UpdatetableDAO(this);
     UpdatetableVO vo = new UpdatetableVO();
-    private MediaPlayer vidro, pete,lata,organico,mp,mgp;
+    private MediaPlayer vidro, pete, lata, organico, mp, mgp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,7 @@ public class Fase01Activity extends AppCompatActivity {
         Random random = new Random();
         cont = random.nextInt(5) + 1;
         setarobjetos();
-
+        son = "ligado";
 
         mp = MediaPlayer.create(getBaseContext(), R.raw.click);
         mgp = MediaPlayer.create(getBaseContext(), R.raw.megaman);
@@ -130,19 +131,12 @@ public class Fase01Activity extends AppCompatActivity {
 
     }
 
+    //verifica a posição do objeto.
     public boolean Verificar() {
-       /* View  vl, btn;
-         vl = findViewById(R.id.imageButtonleft);
-         btn = findViewById(R.id.btnb1);
-
-         int Tvl = (int) vl.getResources().getDisplayMetrics().ydpi;
-        int Tbtn = (int) btn.getResources().getDisplayMetrics().ydpi / 2;
-        int total = Tbtn + Tvl;
-*/
-
-        return ((int) tvTranslatehoriz.getTranslationY() > 600 && (int) tvTranslatehoriz.getTranslationY() < 750);
+        return ((int) tvTranslatehoriz.getTranslationY() > 600 && (int) tvTranslatehoriz.getTranslationY() < 800);
     }
 
+    // atualiza os pontos do jogador
     public void pontuar() {
         switch (posicaoInicial) {
 
@@ -200,6 +194,7 @@ public class Fase01Activity extends AppCompatActivity {
         }
     }
 
+    // acelera o jogo conforme o total de pontos
     public void acelerar() {
         if (pontos > 400 && pontos < 700) {
             ANIMATION_CIRCLE_DELAY = 2300;
@@ -212,37 +207,40 @@ public class Fase01Activity extends AppCompatActivity {
             ANIMATION_CIRCLE_DELAY = 1700;
             star2.setBackground(getResources().getDrawable(star_big_on));
             totalestrelas = 2;
-        } else if (pontos > 1500 && pontos < 2000) {
+        } else if (pontos > 2000 && pontos < 2500) {
             ANIMATION_CIRCLE_DELAY = 1200;
             star3.setBackground(getResources().getDrawable(star_big_on));
             totalestrelas = 3;
-        } else if (pontos > 2000) {
+        } else if (pontos > 3000) {
             termsConditionsAnim.removeAllListeners();
             termsConditionsAnim.resume();
             terms.removeAllListeners();
             terms.resume();
+            mgp.stop();
             resumodojogovenceu();
         }
 
     }
 
+    // encera o jogo quando o jogado atinge o objeivo
     private void resumodojogovenceu() {
 
-        titulo = (TextView)findViewById(R.id.txttitulo);
-        showpontos = (TextView)findViewById(R.id.txtpontos);
-        titulo.setText("PARABÉNS VOCÊ VENCEU");
-        showpontos.setText(pontos);
-        reStart =  (Button)findViewById(R.id.btnproximafase);
-        reStart.setText("Próxima Fase");
+        titulo = (TextView) findViewById(R.id.txttitulo);
+        showpontos = (TextView) findViewById(R.id.txtpontos);
+        titulo.setText("PARABÉNS!");
+        showpontos.setText(" " +pontos);
+        reStart = (Button) findViewById(R.id.btnproximafase);
+        reStart.setText("Restart");
         showestrelas();
         showProgress(true);
     }
 
+    // atualiza as vidas do jogador
     public void vidas() {
         vida -= 10;
-
     }
 
+    // verifica a quantidade de vida do jogador e encerra o jogo se o jogado não tiver vidas
     public void perderjogo() {
         if (vida < 300 && vida > 200) {
             vida1.setBackground(getResources().getDrawable(R.drawable.coracao_offf));
@@ -263,19 +261,20 @@ public class Fase01Activity extends AppCompatActivity {
         }
 
     }
-
+// encerra o jogo
     private void resumodojogo() {
 
-        titulo = (TextView)findViewById(R.id.txttitulo);
-        showpontos = (TextView)findViewById(R.id.txtpontos);
+        titulo = (TextView) findViewById(R.id.txttitulo);
+        showpontos = (TextView) findViewById(R.id.txtpontos);
         titulo.setText("GAME OVER");
-        showpontos.setText(" "+ pontos);
-        reStart =  (Button)findViewById(R.id.btnproximafase);
+        showpontos.setText(" " + pontos);
+        reStart = (Button) findViewById(R.id.btnproximafase);
         reStart.setText("Restart");
         showestrelas();
         showProgress(true);
     }
 
+    // metodo responsável pela animação do jogo, movimentos dos objetos
     private void startCircleAnimation() {
         //    ObjectAnimator termsConditionsAnim = ObjectAnimator.ofFloat(circle, "alpha", 1, 0);
         termsConditionsAnim = ObjectAnimator.ofFloat(tvTranslatehoriz, "translationY", 0, 800);
@@ -303,7 +302,7 @@ public class Fase01Activity extends AppCompatActivity {
         @Override
         public void onAnimationEnd(Animator animation) {
             startCircleAnimation();
-              mgp.start();
+            mgp.start();
 
         }
 
@@ -380,7 +379,7 @@ public class Fase01Activity extends AppCompatActivity {
         }
     };
 
-  private void AlertarMensagem(Context contest, final Activity act) {
+    private void AlertarMensagem(Context contest, final Activity act) {
 
         final Dialog alert = new Dialog(contest);
         alert.setContentView(R.layout.dialoglayout);
@@ -397,7 +396,7 @@ public class Fase01Activity extends AppCompatActivity {
             public void onClick(View v) {
                 alert.dismiss();
                 act.finish();
-                startActivity(new Intent(getBaseContext(), Main3Activity.class));
+
             }
         });
         //btnrestart
@@ -411,6 +410,7 @@ public class Fase01Activity extends AppCompatActivity {
         alert.show();
     }
 
+    // metodo para mostrar a quantidade de estrelas de o jogado ganhou.
     public void showestrelas() {
         switch (totalestrelas) {
             case 1:
@@ -428,24 +428,25 @@ public class Fase01Activity extends AppCompatActivity {
         }
     }
 
+    // grava o nome e pontoação do usuário
     private void salvar() {
 
-            Cursor c =  dao.buscarString("1");
-            int pontosbd=0;
-            while (c.moveToNext()) {
-                pontosbd = c.getInt(c.getColumnIndex("ponto"));
-            }
-        if(pontosbd < pontos) {
-                exibirMensagemEdt("Novo Recorde", "Digite Seu Nome!");
+        Cursor c = dao.buscarString("1");
+        int pontosbd = 0;
+        while (c.moveToNext()) {
+            pontosbd = c.getInt(c.getColumnIndex("ponto"));
+        }
+        if (pontosbd < pontos) {
+            exibirMensagemEdt("Novo Recorde", "Digite Seu Nome!");
 
-        }else{
+        } else {
             finish();
             return;
         }
     }
 
     public void resert() {
-       startActivity(new Intent(getBaseContext(), Fase01Activity.class));
+        startActivity(new Intent(getBaseContext(), Fase01Activity.class));
         finish();
         mgp.stop();
     }
@@ -662,19 +663,19 @@ public class Fase01Activity extends AppCompatActivity {
 
     }
 
-    public void Restart_Start_Fase(View v){
+    public void Restart_Start_Fase(View v) {
 
-        Button start =  (Button)findViewById(R.id.btnproximafase);
-        if(start.getText().toString().equals("Restart")){
+        Button start = (Button) findViewById(R.id.btnproximafase);
+        if (start.getText().toString().equals("Restart")) {
             showProgress(false);
-             mgp.stop();
+            mgp.stop();
             startActivity(new Intent(getBaseContext(), Fase01Activity.class));
             finish();
 
-        }else{
+        } else {
             showProgress(false);
-            Toast.makeText(Fase01Activity.this, "Baixe a Version Pro 2.0", Toast.LENGTH_SHORT).show();
-            finish();
+            salvar();
+            mgp.stop();
         }
 
     }
@@ -684,30 +685,45 @@ public class Fase01Activity extends AppCompatActivity {
 
         mostrarbotoes.setVisibility(show ? View.VISIBLE : View.GONE);
     }
-    public void SAIR(View v){
+
+    public void SAIR(View v) {
         showProgress(false);
         salvar();
         mgp.stop();
     }
-    public void PAUSE(View v){
-        TextView start =  (TextView)findViewById(R.id.btnpause);
-           if(start.getText().toString().equals("PAUSE")){
-               start.setText("START");
-               termsConditionsAnim.pause();
-               terms.pause();
-               mgp.stop();
-           }else if(start.getText().toString().equals("START")){
-               termsConditionsAnim.start();
-               terms.start();
-               start.setText("PAUSE");
-               mgp = MediaPlayer.create(getBaseContext(), R.raw.megaman);
-               mgp.start();
-           }
+
+    public void IMG_SOM(View v) {
+        if(son.equals("ligado")) {
+            son = "desligado";
+            mgp.stop();
+            findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_note_off_white_24dp));
+        } else if(son.equals("desligado")) {
+            son = "ligado";
+            mgp = MediaPlayer.create(getBaseContext(), R.raw.megaman);
+            mgp.start();
+            findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_circle_white_24dp));
+        }
+    }
+
+    public void PAUSE(View v) {
+        TextView start = (TextView) findViewById(R.id.btnpause);
+        if (start.getText().toString().equals("PAUSE")) {
+            start.setText("START");
+            termsConditionsAnim.pause();
+            terms.pause();
+            mgp.stop();
+        } else if (start.getText().toString().equals("START")) {
+            termsConditionsAnim.start();
+            terms.start();
+            start.setText("PAUSE");
+            mgp = MediaPlayer.create(getBaseContext(), R.raw.megaman);
+            mgp.start();
+        }
 
 
     }
 
-    public void SAIRDOJOGO(View V){
+    public void SAIRDOJOGO(View V) {
 
         termsConditionsAnim.removeAllListeners();
         termsConditionsAnim.resume();
@@ -718,7 +734,7 @@ public class Fase01Activity extends AppCompatActivity {
         salvar();
     }
 
-    public void exibirMensagemEdt(String titulo, String texto){
+    public void exibirMensagemEdt(String titulo, String texto) {
 
         AlertDialog.Builder mensagem = new AlertDialog.Builder(Fase01Activity.this);
         mensagem.setTitle(titulo);
@@ -731,7 +747,7 @@ public class Fase01Activity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
 
-               String  nome =  input.getText().toString().trim();
+                String nome = input.getText().toString().trim();
                 vo.setJogador(nome);
                 vo.setFase(1);
                 vo.setEstrela(totalestrelas);
