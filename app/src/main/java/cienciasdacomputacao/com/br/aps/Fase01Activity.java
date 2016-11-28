@@ -672,7 +672,6 @@ public class Fase01Activity extends AppCompatActivity {
             pontos = 0;
             showvida();
             verificarsompause();
-            totalestrelas = 0;
             ANIMATION_CIRCLE_DELAY = 2500;
             showstar();
             showProgress(false);
@@ -685,9 +684,10 @@ public class Fase01Activity extends AppCompatActivity {
     }
 
     private void showstar() {
-        findViewById(R.id.star1).setBackground(getResources().getDrawable(star_big_off));
-        findViewById(R.id.star2).setBackground(getResources().getDrawable(star_big_off));
-        findViewById(R.id.star3).setBackground(getResources().getDrawable(star_big_off));
+        totalestrelas = 0;
+        findViewById(R.id.btn_star1).setBackground(getResources().getDrawable(star_big_off));
+        findViewById(R.id.btn_star1).setBackground(getResources().getDrawable(star_big_off));
+        findViewById(R.id.btn_star1).setBackground(getResources().getDrawable(star_big_off));
     }
 
 
