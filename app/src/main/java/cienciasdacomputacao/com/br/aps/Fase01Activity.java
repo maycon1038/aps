@@ -36,7 +36,7 @@ public class Fase01Activity extends AppCompatActivity {
     public int pontos = 0;
     public static ObjectAnimator termsConditionsAnim, terms;
     private TextView txtp;
-    private View star1, star2, star3, vida1, vida2, vida3, btnb1;
+    private View btnb1;
     public int total;
     public int vida = 300;
     public int totalestrelas = 0;
@@ -64,14 +64,9 @@ public class Fase01Activity extends AppCompatActivity {
 
         mostrarbotoes = findViewById(R.id.framelayoutpop);
 
-        vida1 = findViewById(R.id.btn_vida1);
-        vida2 = findViewById(R.id.btn_vida2);
-        vida3 = findViewById(R.id.btn_vida3);
+        showstar();
+        startsom();
 
-
-        star1 = findViewById(R.id.btn_star1);
-        star2 = findViewById(R.id.btn_star2);
-        star3 = findViewById(R.id.btn_star3);
         findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_note_off_white_24dp));
         showvida();
 
@@ -81,10 +76,7 @@ public class Fase01Activity extends AppCompatActivity {
         son = "desligado";
 
         mp = MediaPlayer.create(getBaseContext(), R.raw.click);
-        vidro = MediaPlayer.create(getBaseContext(), R.raw.vidro);
-        pete = MediaPlayer.create(getBaseContext(), R.raw.pete);
-        lata = MediaPlayer.create(getBaseContext(), R.raw.lata);
-        organico = MediaPlayer.create(getBaseContext(), R.raw.organico);
+
 
         btnb1 = findViewById(R.id.btnb1);
 
@@ -128,9 +120,9 @@ public class Fase01Activity extends AppCompatActivity {
     }
 
     private void showvida() {
-        vida1.setBackground(getResources().getDrawable(R.drawable.coracao_on));
-        vida2.setBackground(getResources().getDrawable(R.drawable.coracao_on));
-        vida3.setBackground(getResources().getDrawable(R.drawable.coracao_on));
+        findViewById(R.id.btn_vida1).setBackground(getResources().getDrawable(R.drawable.coracao_on));
+        findViewById(R.id.btn_vida2).setBackground(getResources().getDrawable(R.drawable.coracao_on));
+        findViewById(R.id.btn_vida3).setBackground(getResources().getDrawable(R.drawable.coracao_on));
     }
 
     //verifica a posição do objeto.
@@ -202,16 +194,16 @@ public class Fase01Activity extends AppCompatActivity {
             ANIMATION_CIRCLE_DELAY = 2300;
         } else if (pontos > 700 && pontos < 1100) {
             ANIMATION_CIRCLE_DELAY = 2000;
-            star1.setBackground(getResources().getDrawable(star_big_on));
+            findViewById(R.id.btn_star1).setBackground(getResources().getDrawable(star_big_on));
             totalestrelas = 1;
 
         } else if (pontos > 1100 && pontos < 1500) {
             ANIMATION_CIRCLE_DELAY = 1700;
-            star2.setBackground(getResources().getDrawable(star_big_on));
+            findViewById(R.id.btn_star2).setBackground(getResources().getDrawable(star_big_on));
             totalestrelas = 2;
         } else if (pontos > 2000 && pontos < 2500) {
             ANIMATION_CIRCLE_DELAY = 1200;
-            star3.setBackground(getResources().getDrawable(star_big_on));
+            findViewById(R.id.btn_star3).setBackground(getResources().getDrawable(star_big_on));
             totalestrelas = 3;
         } else if (pontos > 3000) {
             termsConditionsAnim.pause();
@@ -241,13 +233,13 @@ public class Fase01Activity extends AppCompatActivity {
     // verifica a quantidade de vida do jogador e encerra o jogo se o jogado não tiver vidas
     public void perderjogo() {
         if (vida < 300 && vida > 200) {
-            vida1.setBackground(getResources().getDrawable(R.drawable.coracao_offf));
+            findViewById(R.id.btn_vida1).setBackground(getResources().getDrawable(R.drawable.coracao_offf));
 
         } else if (vida < 200 && vida > 100) {
-            vida2.setBackground(getResources().getDrawable(R.drawable.coracao_offf));
+            findViewById(R.id.btn_vida2).setBackground(getResources().getDrawable(R.drawable.coracao_offf));
 
         } else if (vida < 100) {
-            vida3.setBackground(getResources().getDrawable(R.drawable.coracao_offf));
+            findViewById(R.id.btn_vida3).setBackground(getResources().getDrawable(R.drawable.coracao_offf));
             termsConditionsAnim.pause();
             terms.pause();
             resumodojogo();
@@ -674,6 +666,7 @@ public class Fase01Activity extends AppCompatActivity {
             verificarsompause();
             ANIMATION_CIRCLE_DELAY = 2500;
             showstar();
+            startsom();
             showProgress(false);
         } else {
             showProgress(false);
@@ -683,11 +676,19 @@ public class Fase01Activity extends AppCompatActivity {
 
     }
 
+    private void startsom() {
+
+        vidro = MediaPlayer.create(getBaseContext(), R.raw.vidro);
+        pete = MediaPlayer.create(getBaseContext(), R.raw.pete);
+        lata = MediaPlayer.create(getBaseContext(), R.raw.lata);
+        organico = MediaPlayer.create(getBaseContext(), R.raw.organico);
+    }
+
     private void showstar() {
         totalestrelas = 0;
         findViewById(R.id.btn_star1).setBackground(getResources().getDrawable(star_big_off));
-        findViewById(R.id.btn_star1).setBackground(getResources().getDrawable(star_big_off));
-        findViewById(R.id.btn_star1).setBackground(getResources().getDrawable(star_big_off));
+        findViewById(R.id.btn_star2).setBackground(getResources().getDrawable(star_big_off));
+        findViewById(R.id.btn_star3).setBackground(getResources().getDrawable(star_big_off));
     }
 
 
