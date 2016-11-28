@@ -412,11 +412,6 @@ public class Fase01Activity extends AppCompatActivity {
     // metodo para mostrar a quantidade de estrelas de o jogado ganhou.
     public void showestrelas() {
         switch (totalestrelas) {
-            case 0:
-                findViewById(R.id.star1).setBackground(getResources().getDrawable(star_big_off));
-                findViewById(R.id.star2).setBackground(getResources().getDrawable(star_big_off));
-                findViewById(R.id.star3).setBackground(getResources().getDrawable(star_big_off));
-                break;
             case 1:
                 findViewById(R.id.star1).setBackground(getResources().getDrawable(star_big_on));
                 break;
@@ -679,7 +674,7 @@ public class Fase01Activity extends AppCompatActivity {
             verificarsompause();
             totalestrelas = 0;
             ANIMATION_CIRCLE_DELAY = 2500;
-            showestrelas();
+            showstar();
             showProgress(false);
         } else {
             showProgress(false);
@@ -687,6 +682,12 @@ public class Fase01Activity extends AppCompatActivity {
          //   mgp.stop();
         }
 
+    }
+
+    private void showstar() {
+        findViewById(R.id.star1).setBackground(getResources().getDrawable(star_big_off));
+        findViewById(R.id.star2).setBackground(getResources().getDrawable(star_big_off));
+        findViewById(R.id.star3).setBackground(getResources().getDrawable(star_big_off));
     }
 
 
