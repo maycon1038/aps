@@ -217,7 +217,7 @@ public class Fase01Activity extends AppCompatActivity {
     private void resumodojogovenceu() {
         titulo = (TextView) findViewById(R.id.txttitulo);
         showpontos = (TextView) findViewById(R.id.txtpontos);
-        titulo.setText("Parabéns Você Ganhou!");
+        titulo.setText("Parabéns!");
         showpontos.setText(" " +pontos);
         reStart = (Button) findViewById(R.id.btnproximafase);
         reStart.setText("Restart");
