@@ -1,9 +1,7 @@
 package cienciasdacomputacao.com.br.aps;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,10 +17,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.Random;
-
+import static android.R.drawable.star_big_off;
 import static android.R.drawable.star_big_on;
 
 
@@ -39,7 +34,7 @@ public class Fase01Activity extends AppCompatActivity {
     public int moverd = 0;
     public int cont = 1;
     public int pontos = 0;
-    public ObjectAnimator termsConditionsAnim, terms;
+    public static ObjectAnimator termsConditionsAnim, terms;
     private TextView txtp;
     private View star1, star2, star3, vida1, vida2, vida3, btnb1;
     public int total;
@@ -60,6 +55,7 @@ public class Fase01Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fase01);
 
+
         TextView left = (TextView) findViewById(R.id.imageButtonleft);
         TextView right = (TextView) findViewById(R.id.imageButtonright);
         txtp = (TextView) findViewById(R.id.txtTextoPontos);
@@ -68,27 +64,21 @@ public class Fase01Activity extends AppCompatActivity {
 
         mostrarbotoes = findViewById(R.id.framelayoutpop);
 
-
         vida1 = findViewById(R.id.btn_vida1);
         vida2 = findViewById(R.id.btn_vida2);
         vida3 = findViewById(R.id.btn_vida3);
 
+
         star1 = findViewById(R.id.btn_star1);
         star2 = findViewById(R.id.btn_star2);
         star3 = findViewById(R.id.btn_star3);
-
+        findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_note_off_white_24dp));
+        showvida();
+        mp = MediaPlayer.create(getBaseContext(), R.raw.click);
         Random random = new Random();
         cont = random.nextInt(5) + 1;
         setarobjetos();
-        son = "ligado";
-
-        mp = MediaPlayer.create(getBaseContext(), R.raw.click);
-        mgp = MediaPlayer.create(getBaseContext(), R.raw.megaman);
-        vidro = MediaPlayer.create(getBaseContext(), R.raw.vidro);
-        pete = MediaPlayer.create(getBaseContext(), R.raw.pete);
-        lata = MediaPlayer.create(getBaseContext(), R.raw.lata);
-        organico = MediaPlayer.create(getBaseContext(), R.raw.organico);
-
+        son = "desligado";
         btnb1 = findViewById(R.id.btnb1);
 
         total = btnb1.getResources().getDisplayMetrics().densityDpi;
@@ -127,8 +117,13 @@ public class Fase01Activity extends AppCompatActivity {
 
         startCircleAnimation();
         startAnimation();
-        mgp.start();
 
+    }
+
+    private void showvida() {
+        vida1.setBackground(getResources().getDrawable(R.drawable.coracao_on));
+        vida2.setBackground(getResources().getDrawable(R.drawable.coracao_on));
+        vida3.setBackground(getResources().getDrawable(R.drawable.coracao_on));
     }
 
     //verifica a posição do objeto.
@@ -143,6 +138,7 @@ public class Fase01Activity extends AppCompatActivity {
             case 1:
                 if (cont == 1) {
                     pontos += 10;
+                    organico = MediaPlayer.create(getBaseContext(), R.raw.organico);
                     organico.start();
 
                 } else {
@@ -152,6 +148,7 @@ public class Fase01Activity extends AppCompatActivity {
             case 2:
                 if (cont == 2) {
                     pontos += 10;
+                    vidro = MediaPlayer.create(getBaseContext(), R.raw.vidro);
                     vidro.start();
 
                 } else {
@@ -161,6 +158,7 @@ public class Fase01Activity extends AppCompatActivity {
             case 3:
                 if (cont == 3) {
                     pontos += 10;
+                    organico = MediaPlayer.create(getBaseContext(), R.raw.organico);
                     organico.start();
 
                 } else {
@@ -171,6 +169,7 @@ public class Fase01Activity extends AppCompatActivity {
             case 4:
                 if (cont == 4) {
                     pontos += 10;
+                    pete = MediaPlayer.create(getBaseContext(), R.raw.pete);
                     pete.start();
 
                 } else {
@@ -181,6 +180,7 @@ public class Fase01Activity extends AppCompatActivity {
             case 5:
                 if (cont == 5) {
                     pontos += 10;
+                    lata = MediaPlayer.create(getBaseContext(), R.raw.lata);
                     lata.start();
 
                 } else {
@@ -212,11 +212,8 @@ public class Fase01Activity extends AppCompatActivity {
             star3.setBackground(getResources().getDrawable(star_big_on));
             totalestrelas = 3;
         } else if (pontos > 3000) {
-            termsConditionsAnim.removeAllListeners();
-            termsConditionsAnim.resume();
-            terms.removeAllListeners();
-            terms.resume();
-            mgp.stop();
+            termsConditionsAnim.pause();
+            terms.pause();
             resumodojogovenceu();
         }
 
@@ -224,10 +221,9 @@ public class Fase01Activity extends AppCompatActivity {
 
     // encera o jogo quando o jogado atinge o objeivo
     private void resumodojogovenceu() {
-
         titulo = (TextView) findViewById(R.id.txttitulo);
         showpontos = (TextView) findViewById(R.id.txtpontos);
-        titulo.setText("PARABÉNS!");
+        titulo.setText("Parabéns Você Ganhou!");
         showpontos.setText(" " +pontos);
         reStart = (Button) findViewById(R.id.btnproximafase);
         reStart.setText("Restart");
@@ -250,11 +246,8 @@ public class Fase01Activity extends AppCompatActivity {
 
         } else if (vida < 100) {
             vida3.setBackground(getResources().getDrawable(R.drawable.coracao_offf));
-            termsConditionsAnim.removeAllListeners();
-            termsConditionsAnim.resume();
-            terms.removeAllListeners();
-            terms.resume();
-            mgp.stop();
+            termsConditionsAnim.pause();
+            terms.pause();
             resumodojogo();
 
 
@@ -263,7 +256,6 @@ public class Fase01Activity extends AppCompatActivity {
     }
 // encerra o jogo
     private void resumodojogo() {
-
         titulo = (TextView) findViewById(R.id.txttitulo);
         showpontos = (TextView) findViewById(R.id.txtpontos);
         titulo.setText("GAME OVER");
@@ -288,7 +280,6 @@ public class Fase01Activity extends AppCompatActivity {
         tvTranslatehoriz.setTranslationX(0);
         posicaoInicial = 3;
 
-
     }
 
     private Animator.AnimatorListener listener = new Animator.AnimatorListener() {
@@ -301,8 +292,12 @@ public class Fase01Activity extends AppCompatActivity {
 
         @Override
         public void onAnimationEnd(Animator animation) {
-            startCircleAnimation();
-            mgp.start();
+
+             startCircleAnimation();
+            if (son.equals("ligado")){
+                mgp.start();
+            }
+
 
         }
 
@@ -358,10 +353,12 @@ public class Fase01Activity extends AppCompatActivity {
 
         @Override
         public void onAnimationEnd(Animator animation) {
-            startAnimation();
-            acelerar();
-            perderjogo();
-            txtp.setText(String.valueOf(pontos));
+
+                startAnimation();
+                acelerar();
+                perderjogo();
+                txtp.setText(String.valueOf(pontos));
+
 
 
         }
@@ -413,6 +410,11 @@ public class Fase01Activity extends AppCompatActivity {
     // metodo para mostrar a quantidade de estrelas de o jogado ganhou.
     public void showestrelas() {
         switch (totalestrelas) {
+            case 0:
+                findViewById(R.id.star1).setBackground(getResources().getDrawable(star_big_off));
+                findViewById(R.id.star2).setBackground(getResources().getDrawable(star_big_off));
+                findViewById(R.id.star3).setBackground(getResources().getDrawable(star_big_off));
+                break;
             case 1:
                 findViewById(R.id.star1).setBackground(getResources().getDrawable(star_big_on));
                 break;
@@ -438,7 +440,6 @@ public class Fase01Activity extends AppCompatActivity {
         }
         if (pontosbd < pontos) {
             exibirMensagemEdt("Novo Recorde", "Digite Seu Nome!");
-
         } else {
             finish();
             return;
@@ -665,17 +666,23 @@ public class Fase01Activity extends AppCompatActivity {
 
     public void Restart_Start_Fase(View v) {
 
-        Button start = (Button) findViewById(R.id.btnproximafase);
-        if (start.getText().toString().equals("Restart")) {
-            showProgress(false);
-            mgp.stop();
-            startActivity(new Intent(getBaseContext(), Fase01Activity.class));
-            finish();
+        Button btnstart = (Button) findViewById(R.id.btnproximafase);
 
+        if (btnstart.getText().toString().equals("Restart")) {
+            termsConditionsAnim.start();
+            terms.start();
+            vida = 300;
+            pontos = 0;
+            showvida();
+            verificarsompause();
+            totalestrelas = 0;
+            ANIMATION_CIRCLE_DELAY = 2500;
+            showestrelas();
+            showProgress(false);
         } else {
             showProgress(false);
             salvar();
-            mgp.stop();
+         //   mgp.stop();
         }
 
     }
@@ -689,40 +696,62 @@ public class Fase01Activity extends AppCompatActivity {
     public void SAIR(View v) {
         showProgress(false);
         salvar();
-        mgp.stop();
     }
 
     public void IMG_SOM(View v) {
-        if(son.equals("ligado")) {
-            son = "desligado";
-            mgp.stop();
-            findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_note_off_white_24dp));
-        } else if(son.equals("desligado")) {
-            son = "ligado";
-            mgp = MediaPlayer.create(getBaseContext(), R.raw.megaman);
-            mgp.start();
-            findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_circle_white_24dp));
-        }
+        verificarsom();
     }
 
     public void PAUSE(View v) {
         TextView start = (TextView) findViewById(R.id.btnpause);
         if (start.getText().toString().equals("PAUSE")) {
+            verificarsompause();
             start.setText("START");
             termsConditionsAnim.pause();
             terms.pause();
-            mgp.stop();
+
         } else if (start.getText().toString().equals("START")) {
             termsConditionsAnim.start();
             terms.start();
+            verificarsompause();
             start.setText("PAUSE");
-            mgp = MediaPlayer.create(getBaseContext(), R.raw.megaman);
-            mgp.start();
         }
 
 
     }
 
+
+    private void verificarsom() {
+
+        TextView start = (TextView) findViewById(R.id.btnpause);
+
+        if(son.equals("ligado") && start.getText().toString().equals("PAUSE")) {
+            son = "desligado";
+            mgp.stop();
+            findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_note_off_white_24dp));
+        } else if(son.equals("desligado") && start.getText().toString().equals("PAUSE")) {
+            son = "ligado";
+            mgp = MediaPlayer.create(getBaseContext(), R.raw.megaman);
+            mgp.start();
+            findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_circle_white_24dp));
+        } else if(son.equals("desligado") && start.getText().toString().equals("START")) {
+            son = "ligado";
+            findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_circle_white_24dp));
+
+        }else if(son.equals("ligado") && start.getText().toString().equals("START")) {
+            son = "desligado";
+            findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_note_off_white_24dp));
+
+        }}
+    private void verificarsompause() {
+        TextView start = (TextView) findViewById(R.id.btnpause);
+        if(son.equals("ligado") && start.getText().toString().equals("PAUSE")) {
+            mgp.stop();
+        } else if(son.equals("ligado") && start.getText().toString().equals("START")) {
+            mgp = MediaPlayer.create(getBaseContext(), R.raw.megaman);
+            mgp.start();
+        }
+    }
     public void SAIRDOJOGO(View V) {
 
         termsConditionsAnim.removeAllListeners();
@@ -730,7 +759,7 @@ public class Fase01Activity extends AppCompatActivity {
         terms.removeAllListeners();
         terms.resume();
         showProgress(false);
-        mgp.stop();
+        verificarsompause();
         salvar();
     }
 
@@ -762,6 +791,18 @@ public class Fase01Activity extends AppCompatActivity {
         // FORÇA O TECLADO APARECER AO ABRIR O ALERT
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+    }
+
+ @Override
+    protected void onStop() {
+        super.onStop();
+     verificarsompause();
+     finish();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 
 }

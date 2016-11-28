@@ -89,10 +89,30 @@ public class MenuActivity extends AppCompatActivity implements ImageView.OnClick
     public void onClick(View view) {
         if (view == btn1) {
             startActivity(new Intent(this, Fase01Activity.class));
-        } else if (view == btn2) {
-            Toast.makeText(this, "Baixe a Version 2.0 Pro", Toast.LENGTH_SHORT).show();
+        }else if(view==btn2){
+            if(dao.buscarTudo() != null) {
+                Cursor c = dao.buscarString("1");
+                while (c.moveToNext()) {
+                    estrelas = c.getInt(c.getColumnIndex("estrela"));
+                }
+                if(estrelas>=1){
+                    Toast.makeText(this, "Fase em Construção", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(this, "Desbloqueie essa fase ganhando 1 ou mais estrelas na fase 1", Toast.LENGTH_SHORT).show();
+                }
+            }
         } else if (view == btn3) {
-            Toast.makeText(this, "Baixe a Version 2.0 Pro", Toast.LENGTH_SHORT).show();
+            if(dao.buscarTudo() != null) {
+                Cursor c = dao.buscarString("2");
+                while (c.moveToNext()) {
+                    estrelas = c.getInt(c.getColumnIndex("estrela"));
+                }
+                if(estrelas>=1){
+                    Toast.makeText(this, "Fase em Construção", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(this, "Desbloqueie essa fase ganhando 1 ou mais estrelas na fase 2", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
 
 
@@ -105,9 +125,25 @@ public class MenuActivity extends AppCompatActivity implements ImageView.OnClick
         if(v==btn1){
             startActivity(new Intent(this, Fase01Activity.class));
         }else if(v==btn2){
-            Toast.makeText(this, "Baixe a Version 2.0 Pro", Toast.LENGTH_SHORT).show();
+            if(dao.buscarTudo() != null) {
+                Cursor c = dao.buscarString("1");
+                    estrelas = c.getInt(c.getColumnIndex("estrela"));
+                  if(estrelas>=1){
+                      Toast.makeText(this, "Fase em Construção", Toast.LENGTH_SHORT).show();
+                  }else {
+                      Toast.makeText(this, "Desbloqueie essa fase ganhando 1 ou mais estrelas na fase 1", Toast.LENGTH_SHORT).show();
+                  }
+                }
         } else if (v == btn3) {
-            Toast.makeText(this, "Baixe a Version 2.0 Pro", Toast.LENGTH_SHORT).show();
+            if(dao.buscarTudo() != null) {
+                Cursor c = dao.buscarString("2");
+                estrelas = c.getInt(c.getColumnIndex("estrela"));
+                if(estrelas>=1){
+                    Toast.makeText(this, "Fase em Construção", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(this, "Desbloqueie essa fase ganhando 1 ou mais estrelas na fase 2", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
         return false;
     }
