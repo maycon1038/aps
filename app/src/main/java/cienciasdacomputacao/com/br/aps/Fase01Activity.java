@@ -74,11 +74,18 @@ public class Fase01Activity extends AppCompatActivity {
         star3 = findViewById(R.id.btn_star3);
         findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_note_off_white_24dp));
         showvida();
-        mp = MediaPlayer.create(getBaseContext(), R.raw.click);
+
         Random random = new Random();
         cont = random.nextInt(5) + 1;
         setarobjetos();
         son = "desligado";
+
+        mp = MediaPlayer.create(getBaseContext(), R.raw.click);
+        vidro = MediaPlayer.create(getBaseContext(), R.raw.vidro);
+        pete = MediaPlayer.create(getBaseContext(), R.raw.pete);
+        lata = MediaPlayer.create(getBaseContext(), R.raw.lata);
+        organico = MediaPlayer.create(getBaseContext(), R.raw.organico);
+
         btnb1 = findViewById(R.id.btnb1);
 
         total = btnb1.getResources().getDisplayMetrics().densityDpi;
@@ -138,7 +145,6 @@ public class Fase01Activity extends AppCompatActivity {
             case 1:
                 if (cont == 1) {
                     pontos += 10;
-                    organico = MediaPlayer.create(getBaseContext(), R.raw.organico);
                     organico.start();
 
                 } else {
@@ -148,7 +154,6 @@ public class Fase01Activity extends AppCompatActivity {
             case 2:
                 if (cont == 2) {
                     pontos += 10;
-                    vidro = MediaPlayer.create(getBaseContext(), R.raw.vidro);
                     vidro.start();
 
                 } else {
@@ -158,7 +163,6 @@ public class Fase01Activity extends AppCompatActivity {
             case 3:
                 if (cont == 3) {
                     pontos += 10;
-                    organico = MediaPlayer.create(getBaseContext(), R.raw.organico);
                     organico.start();
 
                 } else {
@@ -169,7 +173,6 @@ public class Fase01Activity extends AppCompatActivity {
             case 4:
                 if (cont == 4) {
                     pontos += 10;
-                    pete = MediaPlayer.create(getBaseContext(), R.raw.pete);
                     pete.start();
 
                 } else {
@@ -180,7 +183,6 @@ public class Fase01Activity extends AppCompatActivity {
             case 5:
                 if (cont == 5) {
                     pontos += 10;
-                    lata = MediaPlayer.create(getBaseContext(), R.raw.lata);
                     lata.start();
 
                 } else {
