@@ -177,7 +177,9 @@ public class MenuActivity extends AppCompatActivity implements ImageView.OnClick
         dao.deletar();
     }
 
-
+    public void SAIRMENU(View v) {
+       finish();
+    }
 
     private void showProgress(final boolean show) {
 

@@ -145,14 +145,14 @@
     </LinearLayout>
 
     <FrameLayout
-        android:layout_width="300dp"
+        android:layout_width="200dp"
         android:layout_height="100dp"
         android:id="@+id/framelayoutmenu"
         android:visibility="gone"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp">
 
-        <TextView
+      <!--  <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimaryDark"
@@ -163,8 +163,14 @@
             android:onClick="LIMPARMENU"
             android:textStyle="bold"
             android:text="Limpar Recorde"
-            android:layout_gravity="top"/>
-
+            android:layout_gravity="top"/>-->
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/refresh"
+                android:id="@+id/btnproximafase"
+                android:onClick="LIMPARMENU"
+                android:layout_gravity="center|top"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -174,8 +180,17 @@
             android:textStyle="bold"
             android:layout_marginTop="40dp"
             android:id="@+id/txtmenurecord"
-            android:layout_gravity="top"/>
-
+            android:layout_gravity="bottom"/>
     </FrameLayout>
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/closecircle"
+        android:id="@+id/btnsair"
+        android:onClick="SAIRMENU"
+        android:layout_weight="0.47" />
 
 </RelativeLayout>

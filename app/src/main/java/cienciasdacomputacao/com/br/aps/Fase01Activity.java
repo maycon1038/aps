@@ -39,6 +39,7 @@ public class Fase01Activity extends AppCompatActivity {
     private View btnb1;
     public int total;
     public int vida = 300;
+    private boolean pause_start;
     public int totalestrelas = 0;
     private String jogador = "";
     private View mostrarbotoes;
@@ -67,6 +68,8 @@ public class Fase01Activity extends AppCompatActivity {
         showstar();
         startsom();
 
+        findViewById(R.id.btnpause).setBackground(getResources().getDrawable(R.drawable.pausecircle));
+
         findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_note_off_white_24dp));
         showvida();
 
@@ -74,6 +77,7 @@ public class Fase01Activity extends AppCompatActivity {
         cont = random.nextInt(5) + 1;
         setarobjetos();
         son = "desligado";
+        pause_start=false;
 
         mp = MediaPlayer.create(getBaseContext(), R.raw.click);
 
@@ -192,14 +196,17 @@ public class Fase01Activity extends AppCompatActivity {
     public void acelerar() {
         if (pontos > 400 && pontos < 700) {
             ANIMATION_CIRCLE_DELAY = 2300;
+            findViewById(R.id.btnmover_lixo2).setVisibility(View.INVISIBLE);
         } else if (pontos > 700 && pontos < 1100) {
             ANIMATION_CIRCLE_DELAY = 2000;
             findViewById(R.id.btn_star1).setBackground(getResources().getDrawable(star_big_on));
+
             totalestrelas = 1;
 
         } else if (pontos > 1100 && pontos < 1500) {
             ANIMATION_CIRCLE_DELAY = 1700;
             findViewById(R.id.btn_star2).setBackground(getResources().getDrawable(star_big_on));
+
             totalestrelas = 2;
         } else if (pontos > 2000 && pontos < 2500) {
             ANIMATION_CIRCLE_DELAY = 1200;
@@ -220,7 +227,6 @@ public class Fase01Activity extends AppCompatActivity {
         titulo.setText("Parabéns!");
         showpontos.setText(" " +pontos);
         reStart = (Button) findViewById(R.id.btnproximafase);
-        reStart.setText("Restart");
         showestrelas();
         showProgress(true);
     }
@@ -232,13 +238,13 @@ public class Fase01Activity extends AppCompatActivity {
 
     // verifica a quantidade de vida do jogador e encerra o jogo se o jogado não tiver vidas
     public void perderjogo() {
-        if (vida < 300 && vida > 200) {
+        if (vida < 300 && vida > 170) {
             findViewById(R.id.btn_vida1).setBackground(getResources().getDrawable(R.drawable.coracao_offf));
 
-        } else if (vida < 200 && vida > 100) {
+        } else if (vida < 170 && vida > 50) {
             findViewById(R.id.btn_vida2).setBackground(getResources().getDrawable(R.drawable.coracao_offf));
 
-        } else if (vida < 100) {
+        } else if (vida < 50) {
             findViewById(R.id.btn_vida3).setBackground(getResources().getDrawable(R.drawable.coracao_offf));
             termsConditionsAnim.pause();
             terms.pause();
@@ -255,7 +261,6 @@ public class Fase01Activity extends AppCompatActivity {
         titulo.setText("GAME OVER");
         showpontos.setText(" " + pontos);
         reStart = (Button) findViewById(R.id.btnproximafase);
-        reStart.setText("Restart");
         showestrelas();
         showProgress(true);
     }
@@ -655,9 +660,7 @@ public class Fase01Activity extends AppCompatActivity {
 
     public void Restart_Start_Fase(View v) {
 
-        Button btnstart = (Button) findViewById(R.id.btnproximafase);
 
-        if (btnstart.getText().toString().equals("Restart")) {
             termsConditionsAnim.start();
             terms.start();
             vida = 300;
@@ -668,11 +671,7 @@ public class Fase01Activity extends AppCompatActivity {
             showstar();
             startsom();
             showProgress(false);
-        } else {
-            showProgress(false);
-            salvar();
-         //   mgp.stop();
-        }
+        findViewById(R.id.btnmover_lixo2).setVisibility(View.VISIBLE);
 
     }
 
@@ -708,17 +707,19 @@ public class Fase01Activity extends AppCompatActivity {
 
     public void PAUSE(View v) {
         TextView start = (TextView) findViewById(R.id.btnpause);
-        if (start.getText().toString().equals("PAUSE")) {
+        if (!pause_start) {
             verificarsompause();
-            start.setText("START");
+            findViewById(R.id.btnpause).setBackground(getResources().getDrawable(R.drawable.playcircle));
+            pause_start=true;
             termsConditionsAnim.pause();
             terms.pause();
 
-        } else if (start.getText().toString().equals("START")) {
+        } else if (pause_start) {
             termsConditionsAnim.start();
             terms.start();
             verificarsompause();
-            start.setText("PAUSE");
+            findViewById(R.id.btnpause).setBackground(getResources().getDrawable(R.drawable.pausecircle));
+            pause_start=false;
         }
 
 
@@ -727,22 +728,22 @@ public class Fase01Activity extends AppCompatActivity {
 
     private void verificarsom() {
 
-        TextView start = (TextView) findViewById(R.id.btnpause);
+      //  TextView start = (TextView) findViewById(R.id.btnpause);
 
-        if(son.equals("ligado") && start.getText().toString().equals("PAUSE")) {
+        if(son.equals("ligado") &&  !pause_start) {
             son = "desligado";
             mgp.stop();
             findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_note_off_white_24dp));
-        } else if(son.equals("desligado") && start.getText().toString().equals("PAUSE")) {
+        } else if(son.equals("desligado") && !pause_start) {
             son = "ligado";
             mgp = MediaPlayer.create(getBaseContext(), R.raw.megaman);
             mgp.start();
             findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_circle_white_24dp));
-        } else if(son.equals("desligado") && start.getText().toString().equals("START")) {
+        } else if(son.equals("desligado") && pause_start) {
             son = "ligado";
             findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_circle_white_24dp));
 
-        }else if(son.equals("ligado") && start.getText().toString().equals("START")) {
+        }else if(son.equals("ligado") && pause_start) {
             son = "desligado";
             findViewById(R.id.imgsom).setBackground(getResources().getDrawable(R.drawable.ic_music_note_off_white_24dp));
 

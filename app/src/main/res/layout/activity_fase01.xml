@@ -34,8 +34,8 @@
         android:layout_alignRight="@+id/frameLayout2">
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:id="@+id/imgsom"
             android:onClick="IMG_SOM"
             android:background="@drawable/ic_music_circle_white_24dp"/>
@@ -91,6 +91,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="130dp"
         android:layout_alignParentRight="true"
+        android:visibility="invisible"
         android:id="@+id/frameLayout2">
 
 
@@ -287,7 +288,7 @@
        <TextView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:textColor="@color/colorPrimaryDark"
+           android:textColor="#430218"
            android:textSize="30dp"
            android:gravity="center"
            android:id="@+id/txttitulo"
@@ -299,7 +300,7 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:textColor="@color/colorPrimaryDark"
-           android:textSize="30dp"
+           android:textSize="35dp"
            android:gravity="center"
            android:textStyle="bold"
            android:layout_marginTop="40dp"
@@ -344,19 +345,17 @@
            android:layout_height="wrap_content">
 
            <Button
-               android:text="Continuar"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:background="@drawable/botao"
+               android:layout_width="70dp"
+               android:layout_height="70dp"
+               android:background="@drawable/refresh"
                android:id="@+id/btnproximafase"
                android:onClick="Restart_Start_Fase"
                android:layout_weight="0.47" />
 
            <Button
-               android:text="Sair"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:background="@drawable/botao"
+               android:layout_width="70dp"
+               android:layout_height="70dp"
+               android:background="@drawable/closecircle"
                android:id="@+id/btnsair"
                android:onClick="SAIR"
                android:layout_weight="0.47" />
@@ -377,29 +376,26 @@
         android:layout_gravity="left|top"
         android:layout_marginLeft="10dp"
         android:layout_toEndOf="@+id/frameLayout">
-    <TextView
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/botao"
-        android:text="PAUSE"
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/pausecircle"
         android:padding="5dp"
         android:gravity="center"
         android:id="@+id/btnpause"
         android:textSize="12dp"
         android:layout_gravity="left"
-        android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:onClick="PAUSE"/>
 
 
-    <TextView
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="SAIR"
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:padding="5dp"
         android:gravity="center"
         android:textSize="12dp"
-        android:background="@drawable/botao"
+        android:background="@drawable/closecircle"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:onClick="SAIRDOJOGO"
