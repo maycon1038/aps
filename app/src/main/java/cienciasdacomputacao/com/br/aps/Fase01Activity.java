@@ -56,7 +56,6 @@ public class Fase01Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fase01);
 
-
         TextView left = (TextView) findViewById(R.id.imageButtonleft);
         TextView right = (TextView) findViewById(R.id.imageButtonright);
         txtp = (TextView) findViewById(R.id.txtTextoPontos);
@@ -195,21 +194,21 @@ public class Fase01Activity extends AppCompatActivity {
     // acelera o jogo conforme o total de pontos
     public void acelerar() {
         if (pontos > 400 && pontos < 700) {
-            ANIMATION_CIRCLE_DELAY = 2300;
+            ANIMATION_CIRCLE_DELAY = 2000;
             findViewById(R.id.btnmover_lixo2).setVisibility(View.INVISIBLE);
         } else if (pontos > 700 && pontos < 1100) {
-            ANIMATION_CIRCLE_DELAY = 2000;
+            ANIMATION_CIRCLE_DELAY = 1500;
             findViewById(R.id.btn_star1).setBackground(getResources().getDrawable(star_big_on));
 
             totalestrelas = 1;
 
         } else if (pontos > 1100 && pontos < 1500) {
-            ANIMATION_CIRCLE_DELAY = 1700;
+            ANIMATION_CIRCLE_DELAY = 1200;
             findViewById(R.id.btn_star2).setBackground(getResources().getDrawable(star_big_on));
 
             totalestrelas = 2;
         } else if (pontos > 2000 && pontos < 2500) {
-            ANIMATION_CIRCLE_DELAY = 1200;
+            ANIMATION_CIRCLE_DELAY = 1000;
             findViewById(R.id.btn_star3).setBackground(getResources().getDrawable(star_big_on));
             totalestrelas = 3;
         } else if (pontos > 3000) {
@@ -229,6 +228,7 @@ public class Fase01Activity extends AppCompatActivity {
         reStart = (Button) findViewById(R.id.btnproximafase);
         showestrelas();
         showProgress(true);
+        salvar();
     }
 
     // atualiza as vidas do jogador
@@ -248,6 +248,7 @@ public class Fase01Activity extends AppCompatActivity {
             findViewById(R.id.btn_vida3).setBackground(getResources().getDrawable(R.drawable.coracao_offf));
             termsConditionsAnim.pause();
             terms.pause();
+            salvar();
             resumodojogo();
 
 
@@ -434,10 +435,9 @@ public class Fase01Activity extends AppCompatActivity {
         }
         if (pontosbd < pontos) {
             exibirMensagemEdt("Novo Recorde", "Digite Seu Nome!");
-        } else {
+        } /*else {
             finish();
-            return;
-        }
+        }*/
     }
 
     public void resert() {
@@ -660,7 +660,6 @@ public class Fase01Activity extends AppCompatActivity {
 
     public void Restart_Start_Fase(View v) {
 
-
             termsConditionsAnim.start();
             terms.start();
             vida = 300;
@@ -671,6 +670,7 @@ public class Fase01Activity extends AppCompatActivity {
             showstar();
             startsom();
             showProgress(false);
+
         findViewById(R.id.btnmover_lixo2).setVisibility(View.VISIBLE);
 
     }
@@ -698,7 +698,7 @@ public class Fase01Activity extends AppCompatActivity {
 
     public void SAIR(View v) {
         showProgress(false);
-        salvar();
+        finish();
     }
 
     public void IMG_SOM(View v) {
@@ -765,7 +765,7 @@ public class Fase01Activity extends AppCompatActivity {
         terms.resume();
         showProgress(false);
         verificarsompause();
-        salvar();
+        finish();
     }
 
     public void exibirMensagemEdt(String titulo, String texto) {
@@ -787,7 +787,7 @@ public class Fase01Activity extends AppCompatActivity {
                 vo.setEstrela(totalestrelas);
                 vo.setPonto(pontos);
                 dao.insert(vo);
-                Fase01Activity.this.finish();
+            //    Fase01Activity.this.finish();
 
             }
 

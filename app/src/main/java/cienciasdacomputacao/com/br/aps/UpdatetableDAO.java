@@ -48,7 +48,7 @@ public class UpdatetableDAO {
 
         String[] busca = new String[]{txtbusca};
 
-        Cursor cursor = db.query(table_name, colunas, "fase = ?", busca, null, null, "_id ASC", null);
+        Cursor cursor = db.query(table_name, colunas, "fase = ?", busca, null, null, null, null);
         return cursor;
     }
     public boolean update(UpdatetableVO tabela , int cod) {

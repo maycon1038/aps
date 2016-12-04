@@ -26,6 +26,7 @@ public class MenuActivity extends AppCompatActivity implements ImageView.OnClick
     private int ANIMATION_CIRCLE_DELAY = 1000;
     private int estrelas, pontos;
     private View titulo, layoutmenu;
+    private int estrelas2;
 
 
     @Override
@@ -87,34 +88,40 @@ public class MenuActivity extends AppCompatActivity implements ImageView.OnClick
 
     @Override
     public void onClick(View view) {
-        if (view == btn1) {
+
+        if(view==btn1) {
             startActivity(new Intent(this, Fase01Activity.class));
-        }else if(view==btn2){
-            if(dao.buscarTudo() != null) {
+        }
+        if(view==btn2) {
+            if ( dao.buscarTudo() != null) {
                 Cursor c = dao.buscarString("1");
                 while (c.moveToNext()) {
                     estrelas = c.getInt(c.getColumnIndex("estrela"));
                 }
-                if(estrelas>=1){
+                if(estrelas>=1) {
                     Toast.makeText(this, "Fase em Construção", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(this, "Desbloqueie essa fase ganhando 1 ou mais estrelas na fase 1", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Necessário uma estrelas na fase 1", Toast.LENGTH_SHORT).show();
                 }
-            }
-        } else if (view == btn3) {
-            if(dao.buscarTudo() != null) {
-                Cursor c = dao.buscarString("2");
-                while (c.moveToNext()) {
-                    estrelas = c.getInt(c.getColumnIndex("estrela"));
-                }
-                if(estrelas>=1){
-                    Toast.makeText(this, "Fase em Construção", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(this, "Desbloqueie essa fase ganhando 1 ou mais estrelas na fase 2", Toast.LENGTH_SHORT).show();
-                }
+            }else {
+                Toast.makeText(this, "Necessário uma estrelas na fase 1", Toast.LENGTH_SHORT).show();
             }
         }
-
+        if(view==btn3){
+                        if ( dao.buscarTudo() != null) {
+                           Cursor c = dao.buscarString("2");
+                            while (c.moveToNext()) {
+                                estrelas2 = c.getInt(c.getColumnIndex("estrela"));
+                            }
+                              if(estrelas2>=1) {
+                                  Toast.makeText(this, "Fase em Construção", Toast.LENGTH_SHORT).show();
+                              }else {
+                                  Toast.makeText(this, "Necessário uma estrelas na fase 2", Toast.LENGTH_SHORT).show();
+                              }
+                        }else {
+                            Toast.makeText(this, "Necessário uma estrelas na fase 2", Toast.LENGTH_SHORT).show();
+                        }
+         }
 
     }
 
@@ -122,29 +129,40 @@ public class MenuActivity extends AppCompatActivity implements ImageView.OnClick
     @Override
 
     public boolean onLongClick(View v) {
-        if(v==btn1){
+        if(v==btn1) {
             startActivity(new Intent(this, Fase01Activity.class));
-        }else if(v==btn2){
-            if(dao.buscarTudo() != null) {
+        }else
+        if(v==btn2) {
+            if ( dao.buscarString("1") != null) {
                 Cursor c = dao.buscarString("1");
-                    estrelas = c.getInt(c.getColumnIndex("estrela"));
-                  if(estrelas>=1){
-                      Toast.makeText(this, "Fase em Construção", Toast.LENGTH_SHORT).show();
-                  }else {
-                      Toast.makeText(this, "Desbloqueie essa fase ganhando 1 ou mais estrelas na fase 1", Toast.LENGTH_SHORT).show();
-                  }
+                while (c.moveToNext()) {
+                    estrelas2 = c.getInt(c.getColumnIndex("estrela"));
                 }
-        } else if (v == btn3) {
-            if(dao.buscarTudo() != null) {
-                Cursor c = dao.buscarString("2");
-                estrelas = c.getInt(c.getColumnIndex("estrela"));
-                if(estrelas>=1){
+                if(estrelas2>=1) {
                     Toast.makeText(this, "Fase em Construção", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(this, "Desbloqueie essa fase ganhando 1 ou mais estrelas na fase 2", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Necessário uma estrelas na fase 1", Toast.LENGTH_SHORT).show();
                 }
+            }else {
+                Toast.makeText(this, "Necessário uma estrelas na fase 1", Toast.LENGTH_SHORT).show();
+            }
+        }else
+        if(v==btn3){
+            if ( dao.buscarString("2") != null) {
+                Cursor c = dao.buscarString("2");
+                while (c.moveToNext()) {
+                    estrelas2 = c.getInt(c.getColumnIndex("estrela"));
+                }
+                if(estrelas2>=1) {
+                    Toast.makeText(this, "Fase em Construção", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(this, "Necessário uma estrelas na fase 2", Toast.LENGTH_SHORT).show();
+                }
+            }else {
+                Toast.makeText(this, "Necessário uma estrelas na fase 1", Toast.LENGTH_SHORT).show();
             }
         }
+
         return false;
     }
 
@@ -200,7 +218,7 @@ public class MenuActivity extends AppCompatActivity implements ImageView.OnClick
                 String nome2 = c.getString(c.getColumnIndex("jogador"));
                 estrelas = c.getInt(c.getColumnIndex("estrela"));
                 pontos = c.getInt(c.getColumnIndex("ponto"));
-                txtmenu.setText("Recorde " + nome2 + "\n  " + pontos);
+                txtmenu.setText(" " + nome2 + "\n  " + pontos);
                 showestrelas(estrelas);
                 startCircleAnimation();
             }
