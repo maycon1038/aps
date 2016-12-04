@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -144,6 +145,7 @@ public class Fase01Activity extends AppCompatActivity {
 
                 } else {
                     vidas();
+                    Vibrar();
                 }
                 break;
             case 2:
@@ -153,6 +155,7 @@ public class Fase01Activity extends AppCompatActivity {
 
                 } else {
                     vidas();
+                    Vibrar();
                 }
                 break;
             case 3:
@@ -162,6 +165,7 @@ public class Fase01Activity extends AppCompatActivity {
 
                 } else {
                     vidas();
+                    Vibrar();
                 }
 
                 break;
@@ -172,6 +176,7 @@ public class Fase01Activity extends AppCompatActivity {
 
                 } else {
                     vidas();
+                    Vibrar();
                 }
 
                 break;
@@ -182,11 +187,13 @@ public class Fase01Activity extends AppCompatActivity {
 
                 } else {
                     vidas();
+                    Vibrar();
                 }
 
                 break;
             default:
                 vidas();
+                Vibrar();
 
         }
     }
@@ -808,6 +815,13 @@ public class Fase01Activity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+    }
+
+    private void Vibrar()
+    {
+        Vibrator rr = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        long milliseconds = 30;//'30' é o tempo em milissegundos, é basicamente o tempo de duração da vibração. portanto, quanto maior este numero, mais tempo de vibração você irá ter
+        rr.vibrate(milliseconds);
     }
 
 }
